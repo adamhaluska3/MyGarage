@@ -15,6 +15,8 @@ namespace MauiApp1
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<Database>();
+
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

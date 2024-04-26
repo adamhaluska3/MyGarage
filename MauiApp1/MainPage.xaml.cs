@@ -1,4 +1,7 @@
-﻿namespace MauiApp1
+﻿using MauiApp1.Models;
+using MauiApp1.Models.VisualModels;
+
+namespace MauiApp1
 {
     public partial class MainPage : ContentPage
     {
@@ -7,19 +10,32 @@
         public MainPage()
         {
             InitializeComponent();
+
+            LoadVehicles();
+
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async Task LoadVehicles()
         {
-            count++;
+            var vehicles = (await App.Database.GetAllVehicles());
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            List<VehicleItem> items = new List<VehicleItem>();
+            foreach (var vehicle in vehicles)
+            {
+                items.Add(new VehicleItem(vehicle.Name, $"{vehicle.Make} {vehicle.Model}"));
+            }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            VehiclesListView.ItemsSource = items;            
+        }
+
+        private async void AddVehicle(Object sevder, EventArgs args)
+        {
+            var vehicle = new Vehicle("Seat", "Seat", "Altea", 2009, "MI3654FFFO", "eeeepey", 0, 0, 0, VehicleType.MPV, FuelType.LPG, 600);
+            await Task.Delay(8000);
+            await App.Database.AddNewVehicle(vehicle);
+            await LoadVehicles();
         }
     }
+
 
 }
