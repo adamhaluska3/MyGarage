@@ -12,28 +12,48 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.ColumnSpan="2"
-                                       Text="{Binding Name}"
-                                       FontAttributes="Bold" />
-                                <Label Grid.Row="2"
-                                       Grid.ColumnSpan="2"
-                                       Text="{Binding Description}"
-                                       FontAttributes="Bold" />
-                            </Grid>
+                             <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="NavigateVehicleDetail"
+                                                            CommandParameter="{Binding Vehicle}" />
+                                </Frame.GestureRecognizers>
+                                    
+                                    <Grid Padding="30">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                    <Label Grid.ColumnSpan="2"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="End"
+                                            Text="{Binding Name}"
+                                            FontAttributes="Bold" />
+                                    <Label Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Description}"
+                                            FontAttributes="Bold" />
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Clicked="AddVehicle" Text="Eepy" />
+            <Grid Padding="30" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Grid.Row ="2" Clicked="AddVehicle" Text="Eepy" WidthRequest="100" />
+                <Button Grid.Column="2" Clicked="Reload" Text="Load" WidthRequest="100" />
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 

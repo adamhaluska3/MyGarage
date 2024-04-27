@@ -12,7 +12,6 @@ namespace MauiApp1
             InitializeComponent();
 
             LoadVehicles();
-
         }
 
         private async Task LoadVehicles()
@@ -22,18 +21,34 @@ namespace MauiApp1
             List<VehicleItem> items = new List<VehicleItem>();
             foreach (var vehicle in vehicles)
             {
-                items.Add(new VehicleItem(vehicle.Name, $"{vehicle.Make} {vehicle.Model}"));
+                items.Add(new VehicleItem(vehicle.Name, $"{vehicle.Make} {vehicle.Model}", vehicle));
             }
 
-            VehiclesListView.ItemsSource = items;            
+            VehiclesListView.ItemsSource = items;
         }
 
-        private async void AddVehicle(Object sevder, EventArgs args)
+        private async void AddVehicle(object sender, EventArgs args)
         {
-            var vehicle = new Vehicle("Seat", "Seat", "Altea", 2009, "MI3654FFFO", "eeeepey", 0, 0, 0, VehicleType.MPV, FuelType.LPG, 600);
+            var vehicle = new Vehicle("Fabija", "Skoda", "Fabia", 2009, "MI182FO", "tmdb", 0, 0, 0, VehicleType.MPV, FuelType.LPG, 600);
             await Task.Delay(8000);
             await App.Database.AddNewVehicle(vehicle);
             await LoadVehicles();
+        }
+        private async void Reload(object sender, EventArgs args)
+        {
+            await LoadVehicles();
+        }
+
+        private async void NavigateVehicleDetail(object sender, TappedEventArgs args)
+        {
+            var vehicle = args.Parameter as Vehicle;
+
+
+            await Shell.Current.GoToAsync(nameof(VehicleDetail), true,
+                new Dictionary<string, object>
+                {
+                    {"vehicle",  vehicle},
+                });
         }
     }
 

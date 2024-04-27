@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.VehicleDetail"
+             xmlns:viewmodel="clr-namespace:MauiApp1.Models.Viewmodels"
+             x:DataType="viewmodel:VehicleDetailViewModel"
+             Title="VehicleDetail">
+    <VerticalStackLayout>
+        <Label 
+            Text="{Binding vehicle}"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Text="Go Back"
+                Command="{Binding GoBackCommand}" />
+    </VerticalStackLayout>
+</ContentPage>
