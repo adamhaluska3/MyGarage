@@ -1,24 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.MainPage">
+             x:Class="MauiApp1.MainPage"
+             Title="MyGarage">
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
 
-            <ListView x:Name="VehiclesListView">
+            <ListView x:Name="VehiclesListView"
+                      HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                             <Frame>
-                                <Frame.GestureRecognizers>
+                             <Border>
+                                <Border.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="NavigateVehicleDetail"
                                                             CommandParameter="{Binding Vehicle}" />
-                                </Frame.GestureRecognizers>
-                                    
-                                    <Grid Padding="30">
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Grid Padding="10">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
@@ -27,17 +29,18 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                    <Label Grid.ColumnSpan="2"
+                                        <Label Grid.ColumnSpan="2"
                                             HorizontalTextAlignment="Center"
                                             VerticalTextAlignment="End"
                                             Text="{Binding Name}"
                                             FontAttributes="Bold" />
-                                    <Label Grid.Row="2"
+                                        <Label Grid.Row="2"
                                             Grid.ColumnSpan="2"
                                             Text="{Binding Description}"
                                             FontAttributes="Bold" />
-                                </Grid>
-                            </Frame>
+                                    </Grid>
+                                </VerticalStackLayout>    
+                            </Border>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

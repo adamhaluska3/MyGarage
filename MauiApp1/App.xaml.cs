@@ -8,9 +8,9 @@
         public App(Database database)
         {
             InitializeComponent();
-
-            MainPage = new AppShell();
             Database = database;
+
+            MainPage = new NavigationPage(new MainPage());
         }
     }
 }

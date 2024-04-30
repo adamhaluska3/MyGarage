@@ -1,16 +1,180 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cp="https://trungnt2910.github.io/schemas/maui/2022/colorpicker"
              x:Class="MauiApp1.VehicleDetail"
              xmlns:viewmodel="clr-namespace:MauiApp1.Models.Viewmodels"
              x:DataType="viewmodel:VehicleDetailViewModel"
-             Title="VehicleDetail">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding vehicle}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Button Text="Go Back"
-                Command="{Binding GoBackCommand}" />
+             Title="{Binding Name}">
+    <VerticalStackLayout x:Name="_verticalStack">
+        <Grid Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Name:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="0"/>
+            <Entry x:Name="VehicleName"
+                   HorizontalOptions="FillAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Text="{Binding Name}"
+                   Placeholder="Name"/>
+
+            <Label Text="Make:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="2"/>
+
+            <Entry x:Name="VehicleMake"
+                   HorizontalOptions="FillAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="2"
+                   Text="{Binding Make}"
+                   Placeholder="Make"/>
+
+            <Label Text="Model:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="3"/>
+
+            <Entry x:Name="VehicleModel"
+                   HorizontalOptions="FillAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="3"
+                   Text="{Binding Model}"
+                   Placeholder="Model"/>
+
+
+            <Label Text="Year:" 
+                    HorizontalOptions="Center"
+                    Padding="10"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Column="0"
+                    Grid.Row="4"/>
+
+            <Entry x:Name="VehicleYear"
+                   HorizontalOptions="FillAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="4"
+                   Text="{Binding Year}"
+                   Placeholder="Year"/>
+
+            <Label Text="Reg. Number:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="6"/>
+
+            <Entry x:Name="VehicleRegNum"
+                   HorizontalOptions="FillAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="6"
+                   Text="{Binding RegNumber}"
+                   Placeholder="RegNum"/>
+
+            <Label Text="VIN:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="7"/>
+
+            <Entry x:Name="VehicleVIN"
+                   HorizontalOptions="FillAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="7"
+                   Text="{Binding VIN}"
+                   Placeholder="VIN"/>
+
+
+            <Label Text="Body type:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="9"/>
+
+            <Picker x:Name="VehicleBodyType"
+                    Grid.Column="1"
+                    Grid.Row="9"
+                    SelectedIndex="{Binding BodyType}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Hatchback</x:String>
+                        <x:String>Sedan</x:String>
+                        <x:String>SUV</x:String>
+                        <x:String>Crossover</x:String>
+                        <x:String>Coupe</x:String>
+                        <x:String>Convertible</x:String>
+                        <x:String>Wagon</x:String>
+                        <x:String>Minivan</x:String>
+                        <x:String>Pickup</x:String>
+                        <x:String>MPV</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Fuel type:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="10"/>
+
+            <Picker x:Name="vehicleFuel"
+                    Grid.Column="1"
+                    Grid.Row="10"
+                    SelectedIndex="{Binding FuelType}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Petrol</x:String>
+                        <x:String>Diesel</x:String>
+                        <x:String>LPG</x:String>
+                        <x:String>Electric</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+
+            <Label Text="Color:" 
+                   HorizontalOptions="Center"
+                   Padding="10"
+                   VerticalOptions="CenterAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="12"/>
+
+            <cp:ColorPicker x:Name="ColorPicker"
+            </cp:ColorPicker>
+
+
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>

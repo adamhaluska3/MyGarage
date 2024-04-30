@@ -29,8 +29,7 @@ namespace MauiApp1
 
         private async void AddVehicle(object sender, EventArgs args)
         {
-            var vehicle = new Vehicle("Fabija", "Skoda", "Fabia", 2009, "MI182FO", "tmdb", 0, 0, 0, VehicleType.MPV, FuelType.LPG, 600);
-            await Task.Delay(8000);
+            var vehicle = new Vehicle("Fabija", "Skoda", "Fabia", 2009, "MI1821222FO", "tmm12db", 0, 0, 0, VehicleType.MPV, FuelType.LPG, 600);
             await App.Database.AddNewVehicle(vehicle);
             await LoadVehicles();
         }
@@ -42,13 +41,9 @@ namespace MauiApp1
         private async void NavigateVehicleDetail(object sender, TappedEventArgs args)
         {
             var vehicle = args.Parameter as Vehicle;
-
-
-            await Shell.Current.GoToAsync(nameof(VehicleDetail), true,
-                new Dictionary<string, object>
-                {
-                    {"vehicle",  vehicle},
-                });
+            var vehicleDetailPage = new VehicleDetail(vehicle);
+            vehicleDetailPage.BindingContext = vehicle;
+            await Navigation.PushAsync(vehicleDetailPage, true);
         }
     }
 
