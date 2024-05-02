@@ -10,6 +10,9 @@ using SQLite;
 namespace MauiApp1.Models.Viewmodels;
 
 [QueryProperty("vehicle", "vehicle")]
+
+
+// TODO REMOVE
 public partial class VehicleDetailViewModel : ObservableObject, IQueryAttributable
 {
     public int Id {  get; set; }

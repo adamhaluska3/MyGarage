@@ -5,7 +5,7 @@
              x:Class="MauiApp1.VehicleDetail"
              xmlns:viewmodel="clr-namespace:MauiApp1.Models.Viewmodels"
              x:DataType="viewmodel:VehicleDetailViewModel"
-             Title="{Binding Name}">
+             Title="{Binding Name, Mode=OneWay}">
     <VerticalStackLayout x:Name="_verticalStack">
         <Grid Padding="30">
             <Grid.RowDefinitions>
@@ -40,7 +40,7 @@
                    HorizontalOptions="FillAndExpand"
                    Grid.Column="1"
                    Grid.Row="0"
-                   Text="{Binding Name}"
+                   Text="{Binding Name, Mode=TwoWay}"
                    Placeholder="Name"/>
 
             <Label Text="Make:" 
@@ -54,7 +54,7 @@
                    HorizontalOptions="FillAndExpand"
                    Grid.Column="1"
                    Grid.Row="2"
-                   Text="{Binding Make}"
+                   Text="{Binding Make, Mode=TwoWay}"
                    Placeholder="Make"/>
 
             <Label Text="Model:" 
@@ -68,7 +68,7 @@
                    HorizontalOptions="FillAndExpand"
                    Grid.Column="1"
                    Grid.Row="3"
-                   Text="{Binding Model}"
+                   Text="{Binding Model, Mode=TwoWay}"
                    Placeholder="Model"/>
 
 
@@ -83,7 +83,7 @@
                    HorizontalOptions="FillAndExpand"
                    Grid.Column="1"
                    Grid.Row="4"
-                   Text="{Binding Year}"
+                   Text="{Binding Year, Mode=TwoWay}"
                    Placeholder="Year"/>
 
             <Label Text="Reg. Number:" 
@@ -97,7 +97,7 @@
                    HorizontalOptions="FillAndExpand"
                    Grid.Column="1"
                    Grid.Row="6"
-                   Text="{Binding RegNumber}"
+                   Text="{Binding RegNumber, Mode=TwoWay}"
                    Placeholder="RegNum"/>
 
             <Label Text="VIN:" 
@@ -111,7 +111,7 @@
                    HorizontalOptions="FillAndExpand"
                    Grid.Column="1"
                    Grid.Row="7"
-                   Text="{Binding VIN}"
+                   Text="{Binding VIN, Mode=TwoWay}"
                    Placeholder="VIN"/>
 
 
@@ -125,7 +125,7 @@
             <Picker x:Name="VehicleBodyType"
                     Grid.Column="1"
                     Grid.Row="9"
-                    SelectedIndex="{Binding BodyType}">
+                    SelectedIndex="{Binding BodyType, Mode=TwoWay}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Hatchback</x:String>
@@ -152,7 +152,7 @@
             <Picker x:Name="vehicleFuel"
                     Grid.Column="1"
                     Grid.Row="10"
-                    SelectedIndex="{Binding FuelType}">
+                    SelectedIndex="{Binding FuelType, Mode=TwoWay}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Petrol</x:String>
@@ -163,16 +163,26 @@
                 </Picker.ItemsSource>
             </Picker>
 
+            <Button x:Name="saveChanges"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="12"
+                    Pressed="UpdateEntry"
+                    Text="Save" />
 
-            <Label Text="Color:" 
+
+            <!--<Label Text="Color:" 
                    HorizontalOptions="Center"
                    Padding="10"
                    VerticalOptions="CenterAndExpand"
                    Grid.Column="0"
-                   Grid.Row="12"/>
+                   Grid.Row="12"/>-->
 
-            <cp:ColorPicker x:Name="ColorPicker"
-            </cp:ColorPicker>
+            <!--<cp:ColorPicker x:Name="ColorPicker"
+                            ColorListDirection="Horizontal"
+                            GradientColorStyle="DarkToColorsToLightStyle"
+                            PickedColorChanged="ColorPicker_PickedColorChanged"
+                            PickedColor="Blue">
+            </cp:ColorPicker>-->
 
 
         </Grid>

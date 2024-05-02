@@ -39,12 +39,28 @@ public class Database
     public async Task<Vehicle?> GetVehicle(int id)
     {
         await Init();
-        return (await connection.Table<Vehicle>().ToListAsync())
-            .Where(candidate => candidate.Id == id)
-            .FirstOrDefault();
+        return await connection.FindAsync<Vehicle>(id);
+        //return (await connection.Table<Vehicle>().ToListAsync())
+        //    .Where(candidate => candidate.Id == id)
+        //    .FirstOrDefault();
     }
 
 
+    public async Task<Vehicle?> UpdateVehicle(Vehicle updatedEntry)
+    {
+        await Init();
+        
+        try
+        {
+            await connection.UpdateAsync(updatedEntry);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+
+        return await connection.FindAsync<Vehicle>(updatedEntry.Id);
+    }
 
 
 

@@ -45,6 +45,13 @@ namespace MauiApp1
             vehicleDetailPage.BindingContext = vehicle;
             await Navigation.PushAsync(vehicleDetailPage, true);
         }
+
+
+        protected override async void OnAppearing()
+        {
+            await LoadVehicles();
+            base.OnAppearing();
+        }
     }
 
 
