@@ -39,7 +39,7 @@ public class Database
     public async Task<List<Vehicle>> GetAllVehicles()
     {
         await Init();
-        return (await connection.Table<Vehicle>().ToListAsync());
+        return (await connection.Table<Vehicle>().OrderBy(x => x.Name).ToListAsync());
     } 
 
     public async Task<Vehicle?> GetVehicle(int id)

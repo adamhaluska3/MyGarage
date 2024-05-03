@@ -14,6 +14,9 @@ public partial class VehicleDetail : ContentPage
     {
         vehicle = v;
         InitializeComponent();
+
+        if (vehicle.Id == -1)
+            deleteEntry.IsEnabled = false;
     }
 
     private async void UpdateEntry(object sender, EventArgs e)
@@ -35,21 +38,25 @@ public partial class VehicleDetail : ContentPage
 
         BindingContext = newVehicle;
         vehicle = newVehicle;
+        deleteEntry.IsEnabled = true;
 
     }
 
     private async void RemoveEntry(object sender, EventArgs e)
     {
         bool answer = await DisplayAlert("Remove", "Do you really want to remove " + vehicle.Name + " ?", "Yes", "No");
-        if (answer)
+        if (!answer)
         {
-            await App.Database.RemoveVehicle(vehicle.Id);
+            return;
         }
+        await App.Database.RemoveVehicle(vehicle.Id);
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         var snackbar = MakeSnackbar("Entry deleted.");
 
         await snackbar.Show(cancellationTokenSource.Token);
+
+        await Navigation.PopAsync();
 
     }
 
