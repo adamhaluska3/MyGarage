@@ -162,29 +162,29 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
+        </Grid>
+        <Grid Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
 
             <Button x:Name="saveChanges"
                     Grid.ColumnSpan="2"
-                    Grid.Row="12"
+                    Grid.Row="0"
                     Pressed="UpdateEntry"
                     Text="Save" />
-
-
-            <!--<Label Text="Color:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="12"/>-->
-
-            <!--<cp:ColorPicker x:Name="ColorPicker"
-                            ColorListDirection="Horizontal"
-                            GradientColorStyle="DarkToColorsToLightStyle"
-                            PickedColorChanged="ColorPicker_PickedColorChanged"
-                            PickedColor="Blue">
-            </cp:ColorPicker>-->
-
-
+            <Button x:Name="deleteEntry"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Margin="00, 10, 0, 0"
+                    Pressed="RemoveEntry"
+                    Text="Delete" />
         </Grid>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,5 +1,6 @@
 ﻿using MauiApp1.Models.Viewmodels;
 using Microsoft.Extensions.Logging;
+using CommunityToolkit.Maui;
 
 namespace MauiApp1
 {
@@ -10,6 +11,10 @@ namespace MauiApp1
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit(options =>
+                {
+                    options.SetShouldEnableSnackbarOnWindows(true);
+                })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

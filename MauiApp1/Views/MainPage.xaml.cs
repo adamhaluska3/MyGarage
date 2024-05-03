@@ -27,11 +27,17 @@ namespace MauiApp1
             VehiclesListView.ItemsSource = items;
         }
 
-        private async void AddVehicle(object sender, EventArgs args)
+        private async void CreateVehicle(object sender, EventArgs args)
         {
-            var vehicle = new Vehicle("Fabija", "Skoda", "Fabia", 2009, "MI1821222FO", "tmm12db", 0, 0, 0, VehicleType.MPV, FuelType.LPG, 600);
-            await App.Database.AddNewVehicle(vehicle);
-            await LoadVehicles();
+            var vehicle = new Vehicle();
+            var vehicleDetailPage = new VehicleDetail(vehicle);
+            // TODO
+            try
+            {
+                vehicleDetailPage.BindingContext = vehicle;
+            }
+            catch { }
+            await Navigation.PushAsync(vehicleDetailPage, true);
         }
         private async void Reload(object sender, EventArgs args)
         {
@@ -42,7 +48,12 @@ namespace MauiApp1
         {
             var vehicle = args.Parameter as Vehicle;
             var vehicleDetailPage = new VehicleDetail(vehicle);
-            vehicleDetailPage.BindingContext = vehicle;
+            // TODO
+            try
+            {
+                vehicleDetailPage.BindingContext = vehicle;
+            }
+            catch { }
             await Navigation.PushAsync(vehicleDetailPage, true);
         }
 

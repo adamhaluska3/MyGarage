@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage"
+             Title="MyGarage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <CollectionView x:Name="VehiclesListView"
+                            EmptyView="No Vehicles.">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NavigateVehicleDetail"
+                                                      CommandParameter="{Binding Vehicle}" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.ColumnSpan="2"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="End"
+                                            Text="{Binding Name}"
+                                            FontAttributes="Bold" />
+                                    <Label Grid.Row="2"
+                                            Grid.ColumnSpan="2"
+                                            Text="{Binding Description}"
+                                            FontAttributes="Bold" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Grid Padding="30" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Grid.Row ="2" Clicked="CreateVehicle" Text="Add new" WidthRequest="100" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

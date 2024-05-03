@@ -5,7 +5,7 @@ namespace MauiApp1.Models;
 public class Vehicle
 {
     [PrimaryKey, AutoIncrement]
-    public int Id { get; set; }
+    public int Id { get; set; } = -1;
 
     [MaxLength(100)]
     public string Name { get; set; }

@@ -30,6 +30,12 @@ public class Database
         return await connection.InsertAsync(vehicle);
     }
 
+    public async Task<int> RemoveVehicle(int id)
+    {
+        await Init();
+        return await connection.DeleteAsync<Vehicle>(id);
+    }
+
     public async Task<List<Vehicle>> GetAllVehicles()
     {
         await Init();
@@ -49,10 +55,13 @@ public class Database
     public async Task<Vehicle?> UpdateVehicle(Vehicle updatedEntry)
     {
         await Init();
-        
         try
         {
-            await connection.UpdateAsync(updatedEntry);
+            if (updatedEntry.Id == -1)
+                await AddNewVehicle(updatedEntry);
+
+            else
+                await connection.UpdateAsync(updatedEntry);
         }
         catch (Exception)
         {
