@@ -6,185 +6,188 @@
              xmlns:viewmodel="clr-namespace:MauiApp1.Models.Viewmodels"
              x:DataType="viewmodel:VehicleDetailViewModel"
              Title="{Binding Name, Mode=OneWay}">
-    <VerticalStackLayout x:Name="_verticalStack">
-        <Grid Padding="30">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
+    <ScrollView>
+        <VerticalStackLayout x:Name="_verticalStack">
+            <Grid Padding="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
 
-            <Label Text="Name:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="0"/>
-            <Entry x:Name="VehicleName"
-                   HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"
-                   Grid.Row="0"
-                   Text="{Binding Name, Mode=TwoWay}"
-                   Placeholder="Name"/>
+                <Label Text="Name:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+                <Entry x:Name="VehicleName"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       Text="{Binding Name, Mode=TwoWay}"
+                       Placeholder="Name"/>
 
-            <Label Text="Make:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="2"/>
+                <Label Text="Make:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="2"/>
 
-            <Entry x:Name="VehicleMake"
-                   HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"
-                   Grid.Row="2"
-                   Text="{Binding Make, Mode=TwoWay}"
-                   Placeholder="Make"/>
+                <Entry x:Name="VehicleMake"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Text="{Binding Make, Mode=TwoWay}"
+                       Placeholder="Make"/>
 
-            <Label Text="Model:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="3"/>
+                <Label Text="Model:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="3"/>
 
-            <Entry x:Name="VehicleModel"
-                   HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"
-                   Grid.Row="3"
-                   Text="{Binding Model, Mode=TwoWay}"
-                   Placeholder="Model"/>
-
-
-            <Label Text="Year:" 
-                    HorizontalOptions="Center"
-                    Padding="10"
-                    VerticalOptions="CenterAndExpand"
-                    Grid.Column="0"
-                    Grid.Row="4"/>
-
-            <Entry x:Name="VehicleYear"
-                   HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"
-                   Grid.Row="4"
-                   Text="{Binding Year, Mode=TwoWay}"
-                   Placeholder="Year"/>
-
-            <Label Text="Reg. Number:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="6"/>
-
-            <Entry x:Name="VehicleRegNum"
-                   HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"
-                   Grid.Row="6"
-                   Text="{Binding RegNumber, Mode=TwoWay}"
-                   Placeholder="RegNum"/>
-
-            <Label Text="VIN:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="7"/>
-
-            <Entry x:Name="VehicleVIN"
-                   HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"
-                   Grid.Row="7"
-                   Text="{Binding VIN, Mode=TwoWay}"
-                   Placeholder="VIN"/>
+                <Entry x:Name="VehicleModel"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       Text="{Binding Model, Mode=TwoWay}"
+                       Placeholder="Model"/>
 
 
-            <Label Text="Body type:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="9"/>
+                <Label Text="Year:" 
+                        HorizontalOptions="Center"
+                        Padding="10"
+                        VerticalOptions="CenterAndExpand"
+                        Grid.Column="0"
+                        Grid.Row="4"/>
 
-            <Picker x:Name="VehicleBodyType"
-                    Grid.Column="1"
-                    Grid.Row="9"
-                    SelectedIndex="{Binding BodyType, Mode=TwoWay}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Hatchback</x:String>
-                        <x:String>Sedan</x:String>
-                        <x:String>SUV</x:String>
-                        <x:String>Crossover</x:String>
-                        <x:String>Coupe</x:String>
-                        <x:String>Convertible</x:String>
-                        <x:String>Wagon</x:String>
-                        <x:String>Minivan</x:String>
-                        <x:String>Pickup</x:String>
-                        <x:String>MPV</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+                <Entry x:Name="VehicleYear"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="4"
+                       Text="{Binding Year, Mode=TwoWay}"
+                       Placeholder="Year"/>
 
-            <Label Text="Fuel type:" 
-                   HorizontalOptions="Center"
-                   Padding="10"
-                   VerticalOptions="CenterAndExpand"
-                   Grid.Column="0"
-                   Grid.Row="10"/>
+                <Label Text="Reg. Number:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="6"/>
 
-            <Picker x:Name="vehicleFuel"
-                    Grid.Column="1"
-                    Grid.Row="10"
-                    SelectedIndex="{Binding FuelType, Mode=TwoWay}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Petrol</x:String>
-                        <x:String>Diesel</x:String>
-                        <x:String>LPG</x:String>
-                        <x:String>Electric</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-        </Grid>
-        <Grid Padding="30">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Entry x:Name="VehicleRegNum"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="6"
+                       Text="{Binding RegNumber, Mode=TwoWay}"
+                       Placeholder="RegNum"/>
+
+                <Label Text="VIN:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="7"/>
+
+                <Entry x:Name="VehicleVIN"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="7"
+                       Text="{Binding VIN, Mode=TwoWay}"
+                       Placeholder="VIN"/>
 
 
-            <Button x:Name="saveChanges"
-                    Grid.ColumnSpan="2"
-                    Grid.Row="0"
-                    Pressed="UpdateEntry"
-                    Text="Save" />
-            <Button x:Name="deleteEntry"
-                    Grid.Column="2"
-                    Grid.Row="1"
-                    Margin="00, 10, 0, 0"
-                    Pressed="RemoveEntry"
-                    Text="Delete" />
-        </Grid>
-    </VerticalStackLayout>
+                <Label Text="Body type:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="9"/>
+
+                <Picker x:Name="VehicleBodyType"
+                        Grid.Column="1"
+                        Grid.Row="9"
+                        SelectedIndex="{Binding BodyType, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Hatchback</x:String>
+                            <x:String>Sedan</x:String>
+                            <x:String>SUV</x:String>
+                            <x:String>Crossover</x:String>
+                            <x:String>Coupe</x:String>
+                            <x:String>Convertible</x:String>
+                            <x:String>Wagon</x:String>
+                            <x:String>Minivan</x:String>
+                            <x:String>Pickup</x:String>
+                            <x:String>MPV</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Fuel type:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="10"/>
+
+                <Picker x:Name="vehicleFuel"
+                        Grid.Column="1"
+                        Grid.Row="10"
+                        SelectedIndex="{Binding FuelType, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Petrol</x:String>
+                            <x:String>Diesel</x:String>
+                            <x:String>LPG</x:String>
+                            <x:String>Electric</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
+            <Grid Padding="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Button x:Name="saveChanges"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Pressed="UpdateEntry"
+                        Text="Save" />
+                <Button x:Name="deleteEntry"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Margin="00, 10, 0, 0"
+                        BackgroundColor="Red"
+                        Pressed="RemoveEntry"
+                        Text="Delete" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

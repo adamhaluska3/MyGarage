@@ -1,6 +1,7 @@
 ﻿using MauiApp1.Models.Viewmodels;
 using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
+using MauiApp1.Views;
 
 namespace MauiApp1
 {
@@ -25,6 +26,8 @@ namespace MauiApp1
 
             builder.Services.AddTransient<VehicleDetail>();
             builder.Services.AddTransient<VehicleDetailViewModel>();
+
+            builder.Services.AddTransient<NoteList>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.NoteList"
+             Title="{Binding Name, StringFormat='{0:s}\'s notes'}">
+    <ScrollView>
+        <VerticalStackLayout x:Name="_verticalStack"
+                             Padding="30">
+            <Entry x:Name="stringFilter"
+                   Margin="30, 30, 30, 0" 
+                   Placeholder="Filter:"
+                   TextChanged="FilterNotes"/>
+            <Picker x:Name="noteTypeFilter"
+                    Margin="30"
+                    Title="Filter by type"
+                    SelectedIndexChanged="FilterNotes">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Engine</x:String>
+                        <x:String>Chassis</x:String>
+                        <x:String>Interior</x:String>
+                        <x:String>Body</x:String>
+                        <x:String>Other</x:String>
+                        <x:String>Any</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <CollectionView x:Name="notesCollection"
+                            EmptyView="No Notes">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NavigateNoteDetail"
+                                              CommandParameter="{Binding Note}" />
+                            </Border.GestureRecognizers>
+                            <VerticalStackLayout>
+                                <Grid Padding="30">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Row="0"
+                                           Grid.Column="0"
+                                           Source="{Binding Note.ImageSource}"
+                                           HeightRequest="100"
+                                           Aspect="AspectFit" />
+                                    <Label Grid.Row="1" 
+                                            Grid.Column="1"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="End"
+                                            Text="{Binding Note.Name}"
+                                            FontAttributes="Bold" />
+                                    <Label Grid.Row="2"
+                                            Grid.Column="2"
+                                            Text="{Binding Note.OdoRemind}"
+                                            FontAttributes="Bold" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button Text="Add"
+                    Clicked="AddNote"
+                    Margin="30"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

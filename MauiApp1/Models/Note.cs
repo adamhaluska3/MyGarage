@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
 
 namespace MauiApp1.Models;
 
 
-class Note
+public class Note : ObservableObject
 {
     [PrimaryKey, AutoIncrement]
-    public int Id { get; set; }
+    public int Id { get; set; } = -1;
 
     [ForeignKey("Id")]
     public int VehicleId { get; set; }
+
+    public NoteType Type { get; set; }
+    public string ImageSource { get; set; }
 
     [MaxLength(100)]
     public string Name { get; set; }
@@ -27,6 +26,11 @@ class Note
 
     public Note()
     {
+    }
+
+    public Note(int vehicleId)
+    {
+        VehicleId = vehicleId;
     }
 
     public Note(int id, int vehicleId, string name, string description, DateTime creationTime, int odoRemind)

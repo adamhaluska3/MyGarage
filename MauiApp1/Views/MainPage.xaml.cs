@@ -1,5 +1,6 @@
 ﻿using MauiApp1.Models;
 using MauiApp1.Models.VisualModels;
+using MauiApp1.Views;
 
 namespace MauiApp1
 {
@@ -24,14 +25,14 @@ namespace MauiApp1
                 items.Add(new VehicleItem(vehicle.Name, $"{vehicle.Make} {vehicle.Model}", vehicle));
             }
 
-            VehiclesListView.ItemsSource = items;
+            VehiclesCollectionView.ItemsSource = items;
         }
 
         private async void CreateVehicle(object sender, EventArgs args)
         {
             var vehicle = new Vehicle();
             var vehicleDetailPage = new VehicleDetail(vehicle);
-            // TODO
+            // TODO ANDROID ERROR int -> enum
             try
             {
                 vehicleDetailPage.BindingContext = vehicle;
@@ -48,12 +49,6 @@ namespace MauiApp1
         {
             var vehicle = args.Parameter as Vehicle;
             var vehicleDetailPage = new VehicleDetail(vehicle);
-            // TODO
-            try
-            {
-                vehicleDetailPage.BindingContext = vehicle;
-            }
-            catch { }
             await Navigation.PushAsync(vehicleDetailPage, true);
         }
 
@@ -62,6 +57,18 @@ namespace MauiApp1
         {
             await LoadVehicles();
             base.OnAppearing();
+        }
+
+        private async void ShowNotes(object sender, EventArgs e)
+        {
+            var vehicleId = (int) ((Button)sender).CommandParameter;
+
+            var noteListpage = new NoteList(vehicleId);
+
+            var currentVehicle = await App.Database.GetVehicle(vehicleId);
+            noteListpage.BindingContext = currentVehicle;
+
+            await Navigation.PushAsync(noteListpage, true);
         }
     }
 

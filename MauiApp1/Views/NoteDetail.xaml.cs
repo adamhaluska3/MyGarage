@@ -1,31 +1,38 @@
-using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MauiApp1.Models;
-using MauiApp1.Models.Viewmodels;
 
-namespace MauiApp1;
+namespace MauiApp1.Views;
 
-public partial class VehicleDetail : ContentPage
+public partial class NoteDetail
 {
-    private Vehicle vehicle;
+	private Note Note;
+	private string VehicleName; // TODO
 
-    public VehicleDetail(Vehicle v)
-    {
-        vehicle = v;
-        InitializeComponent();
+	public NoteDetail(string vehicleName, Note note)
+	{
+		Note = note;
+		VehicleName = vehicleName;
+		InitializeComponent();
+        TitleLabel.Text = $"Note is related to {VehicleName}";
 
-        if (vehicle.Id == -1)
+        if (note.Id == -1)
             deleteEntry.IsEnabled = false;
+
+        if (note.Name == null)
+        {
+            Title = "New Note";
+        }
     }
 
-    private async void UpdateEntry(object sender, EventArgs e)
-    {
-        vehicle.BodyType = (VehicleType)VehicleBodyType.SelectedIndex;
-        vehicle.FuelType = (FuelType)vehicleFuel.SelectedIndex;
+	private async void UpdateEntry(object sender, EventArgs e)
+	{
+        Note.Type = (NoteType)NoteType.SelectedIndex;
+        Note.ImageSource = ChooseImageSource(Note.Type);
 
-        var newVehicle = (await App.Database.UpdateVehicle(vehicle));
-        if (newVehicle == null)
+        var newNote = (await App.Database.UpdateNote(Note));
+        if (newNote == null)
         {
             await DisplayAlert("Invalid data", "Reg. number and VIN need to be unique.", "OK");
             return;
@@ -36,19 +43,18 @@ public partial class VehicleDetail : ContentPage
 
         await snackbar.Show(cancellationTokenSource.Token);
 
-        BindingContext = newVehicle;
-        vehicle = newVehicle;
+        BindingContext = newNote;
+        Note = newNote;
+        Title = newNote.Name;
         deleteEntry.IsEnabled = true;
-
     }
-
     private async void RemoveEntry(object sender, EventArgs e)
-    {
-        bool answer = await DisplayAlert("Remove", "Do you really want to remove " + vehicle.Name + " ?", "Yes", "No");
+	{
+        bool answer = await DisplayAlert("Remove", "Do you really want to remove this note?", "Yes", "No");
         if (!answer)
             return;
 
-        await App.Database.RemoveVehicle(vehicle.Id);
+        await App.Database.RemoveNote(Note.Id);
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         var snackbar = MakeSnackbar("Entry deleted.");
@@ -56,8 +62,8 @@ public partial class VehicleDetail : ContentPage
         await snackbar.Show(cancellationTokenSource.Token);
 
         await Navigation.PopAsync();
-
     }
+
     protected override async void OnAppearing()
     {
         await LoadBindings();
@@ -66,7 +72,7 @@ public partial class VehicleDetail : ContentPage
 
     private async Task LoadBindings()
     {
-        BindingContext = vehicle;
+        BindingContext = Note;
     }
 
     private ISnackbar MakeSnackbar(string message)
@@ -86,5 +92,17 @@ public partial class VehicleDetail : ContentPage
         var snackbar = Snackbar.Make(text, action, actionButtonText, duration, snackbarOptions);
 
         return snackbar;
+    }
+
+
+    private string ChooseImageSource(NoteType type)
+    {
+        //const string resourcesPath = "/Resources/Images/";
+
+        string output = type.ToString().ToLowerInvariant() + ".png";
+
+        return output;
+
+        //return "engine.png";
     }
 }

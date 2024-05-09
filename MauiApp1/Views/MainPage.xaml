@@ -9,7 +9,7 @@
             Padding="30,0"
             Spacing="25">
 
-            <CollectionView x:Name="VehiclesListView"
+            <CollectionView x:Name="VehiclesCollectionView"
                             EmptyView="No Vehicles.">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -21,14 +21,16 @@
                             <VerticalStackLayout>
                                 <Grid Padding="10">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.ColumnSpan="2"
+                                    <Label Grid.Row="1" 
+                                            Grid.ColumnSpan="2"
                                             HorizontalTextAlignment="Center"
                                             VerticalTextAlignment="End"
                                             Text="{Binding Name}"
@@ -37,6 +39,12 @@
                                             Grid.ColumnSpan="2"
                                             Text="{Binding Description}"
                                             FontAttributes="Bold" />
+                                    <Button Grid.Column="3"
+                                            Grid.RowSpan="2"
+                                            Clicked="ShowNotes"
+                                            CommandParameter="{Binding Vehicle.Id}"
+                                            Text="Notes" />
+
                                 </Grid>
                             </VerticalStackLayout>
                         </Border>

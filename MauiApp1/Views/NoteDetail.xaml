@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Views.NoteDetail"
+             Title="{Binding Name}">
+    <ScrollView>
+        <VerticalStackLayout x:Name="_verticalStack">
+            <Label x:Name ="TitleLabel" 
+                   Text="" />
+            <Grid Padding="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Name:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="0"/>
+                <Entry x:Name="NoteName"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       Text="{Binding Name, Mode=TwoWay}"
+                       Placeholder="Name"/>
+
+                <Label Text="Type:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="1"/>
+
+                <Picker x:Name="NoteType"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        SelectedIndex="{Binding Type, Mode=TwoWay}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Engine</x:String>
+                            <x:String>Chassis</x:String>
+                            <x:String>Interior</x:String>
+                            <x:String>Body</x:String>
+                            <x:String>Other</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label Text="Description:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="3"/>
+                <Editor x:Name="NoteDescription"
+                        HorizontalOptions="FillAndExpand"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Grid.RowSpan="3"
+                        Text="{Binding Description, Mode=TwoWay}"
+                        Placeholder="Description"/>
+
+                <Label Text="Next check at:" 
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="7"/>
+                <Entry x:Name="NoteOdo"
+                       HorizontalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="7"
+                       Text="{Binding OdoRemind, Mode=TwoWay}"
+                       Placeholder="Odometer state"/>
+
+                <Button x:Name="saveChanges"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="9"
+                        Pressed="UpdateEntry"
+                        Text="Save" />
+                <Button x:Name="deleteEntry"
+                        Grid.Column="2"
+                        Grid.Row="10"
+                        Margin="00, 10, 0, 0"
+                        BackgroundColor="Red"
+                        Pressed="RemoveEntry"
+                        Text="Delete" />
+
+            </Grid>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

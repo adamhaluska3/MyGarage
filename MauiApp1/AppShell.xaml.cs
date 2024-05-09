@@ -1,4 +1,5 @@
 ﻿using MauiApp1.Models.VisualModels;
+using MauiApp1.Views;
 
 namespace MauiApp1
 {
@@ -9,6 +10,7 @@ namespace MauiApp1
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(VehicleDetail), typeof(VehicleDetail));
+            Routing.RegisterRoute(nameof(NoteList), typeof(NoteList));
         }
     }
 }

@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SQLite;
+﻿using SQLite;
 
 namespace MauiApp1;
 
 public static class Constants
 {
     public const string DatabaseFilename = "MyGarageDatabase.db3";
-    public const SQLite.SQLiteOpenFlags Flags =
+    public const SQLiteOpenFlags Flags =
         // open the database in read/write mode
-        SQLite.SQLiteOpenFlags.ReadWrite |
+        SQLiteOpenFlags.ReadWrite |
         // create the database if it doesn't exist
-        SQLite.SQLiteOpenFlags.Create |
+        SQLiteOpenFlags.Create |
         // enable multi-threaded database access
-        SQLite.SQLiteOpenFlags.SharedCache;
+        SQLiteOpenFlags.SharedCache;
 
     public static string DatabasePath =>
         Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
