@@ -24,6 +24,13 @@ public partial class VehicleDetail : ContentPage
         vehicle.BodyType = (VehicleType)VehicleBodyType.SelectedIndex;
         vehicle.FuelType = (FuelType)vehicleFuel.SelectedIndex;
 
+        vehicle.Name = vehicle.Name.Trim();
+        vehicle.Make = vehicle.Make.Trim();
+        vehicle.Model = vehicle.Model.Trim();
+        vehicle.RegNumber = vehicle.RegNumber.Trim();
+
+        vehicle.ImageSource = vehicle.BodyType.ToString().ToLowerInvariant() + ".png";
+
         var newVehicle = (await App.Database.UpdateVehicle(vehicle));
         if (newVehicle == null)
         {

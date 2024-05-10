@@ -1,8 +1,9 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 
 namespace MauiApp1.Models;
 
-public class Vehicle
+public class Vehicle : ObservableObject
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; } = -1;
@@ -24,6 +25,7 @@ public class Vehicle
     public int Color_G { get; set; }
     public int Color_B { get; set; }
     public VehicleType BodyType { get; set; }
+    public string ImageSource {  get; set; }
     public FuelType FuelType { get; set; }
 
     public int ExpectedWeekOdo { get; set; }

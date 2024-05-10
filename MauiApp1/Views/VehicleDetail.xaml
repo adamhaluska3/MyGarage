@@ -138,7 +138,7 @@
                             <x:String>Wagon</x:String>
                             <x:String>Minivan</x:String>
                             <x:String>Pickup</x:String>
-                            <x:String>MPV</x:String>
+                            <x:String>Supercar</x:String>
                         </x:Array>
                     </Picker.ItemsSource>
                 </Picker>

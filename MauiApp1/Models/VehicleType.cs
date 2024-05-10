@@ -11,5 +11,5 @@ public enum VehicleType
     Wagon,
     Minivan,
     Pickup,
-    MPV
+    Supercar
 }

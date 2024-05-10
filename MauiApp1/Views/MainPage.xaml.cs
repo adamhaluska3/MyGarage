@@ -45,9 +45,10 @@ namespace MauiApp1
             await LoadVehicles();
         }
 
-        private async void NavigateVehicleDetail(object sender, TappedEventArgs args)
+        private async void NavigateVehicleDetail(object sender, EventArgs args)
         {
-            var vehicle = args.Parameter as Vehicle;
+            var vehicle = (Vehicle)((Button)sender).CommandParameter;
+            
             var vehicleDetailPage = new VehicleDetail(vehicle);
             await Navigation.PushAsync(vehicleDetailPage, true);
         }
@@ -59,13 +60,13 @@ namespace MauiApp1
             base.OnAppearing();
         }
 
-        private async void ShowNotes(object sender, EventArgs e)
+        private async void ShowNotes(object sender, TappedEventArgs e)
         {
-            var vehicleId = (int) ((Button)sender).CommandParameter;
+            var vehicle = e.Parameter as Vehicle;
 
-            var noteListpage = new NoteList(vehicleId);
+            var noteListpage = new NoteList(vehicle.Id);
 
-            var currentVehicle = await App.Database.GetVehicle(vehicleId);
+            var currentVehicle = await App.Database.GetVehicle(vehicle.Id);
             noteListpage.BindingContext = currentVehicle;
 
             await Navigation.PushAsync(noteListpage, true);
