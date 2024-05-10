@@ -58,7 +58,6 @@
                                             Clicked="NavigateVehicleDetail"
                                             CommandParameter="{Binding Vehicle}"
                                             Text="Edit" />
-
                                 </Grid>
                             </VerticalStackLayout>
                         </Border>

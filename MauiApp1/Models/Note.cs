@@ -22,6 +22,8 @@ public class Note : ObservableObject
     public string Description { get; set; }
 
     public DateTime CreationTime { get; set; }
+
+    public bool HasRemind { get; set; }
     public int OdoRemind { get; set; }
 
     public Note()

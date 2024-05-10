@@ -15,7 +15,7 @@ public partial class NoteDetail
 		Note = note;
 		VehicleName = vehicleName;
 		InitializeComponent();
-        TitleLabel.Text = $"Note is related to {VehicleName}";
+        TitleLabel.Text = $"Note for {VehicleName}";
 
         if (note.Id == -1)
             deleteEntry.IsEnabled = false;
@@ -30,6 +30,8 @@ public partial class NoteDetail
 	{
         Note.Type = (NoteType)NoteType.SelectedIndex;
         Note.ImageSource = ChooseImageSource(Note.Type);
+        if (!Note.HasRemind)
+            Note.OdoRemind = 0;
 
         var newNote = (await App.Database.UpdateNote(Note));
         if (newNote == null)
@@ -46,6 +48,8 @@ public partial class NoteDetail
         BindingContext = newNote;
         Note = newNote;
         Title = newNote.Name;
+
+
         deleteEntry.IsEnabled = true;
     }
     private async void RemoveEntry(object sender, EventArgs e)
@@ -97,12 +101,8 @@ public partial class NoteDetail
 
     private string ChooseImageSource(NoteType type)
     {
-        //const string resourcesPath = "/Resources/Images/";
-
         string output = type.ToString().ToLowerInvariant() + ".png";
 
         return output;
-
-        //return "engine.png";
     }
 }

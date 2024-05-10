@@ -8,7 +8,7 @@
                              Padding="30">
             <Entry x:Name="stringFilter"
                    Margin="30, 30, 30, 0" 
-                   Placeholder="Filter:"
+                   Placeholder="Search:"
                    TextChanged="FilterNotes"/>
             <Picker x:Name="noteTypeFilter"
                     Margin="30"
@@ -36,31 +36,42 @@
                                               CommandParameter="{Binding Note}" />
                             </Border.GestureRecognizers>
                             <VerticalStackLayout>
-                                <Grid Padding="30">
+                                <Grid Padding="15">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />
+                                        <RowDefinition Height="20" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
                                     </Grid.ColumnDefinitions>
-                                    <Image Grid.Row="0"
-                                           Grid.Column="0"
+                                    <Image Grid.RowSpan="3"
+                                           Grid.Column ="0"
                                            Source="{Binding Note.ImageSource}"
-                                           HeightRequest="100"
+                                           HeightRequest="50"
+                                           Margin="0"
                                            Aspect="AspectFit" />
-                                    <Label Grid.Row="1" 
-                                            Grid.Column="1"
-                                            HorizontalTextAlignment="Center"
-                                            VerticalTextAlignment="End"
-                                            Text="{Binding Note.Name}"
-                                            FontAttributes="Bold" />
+                                    <Label Grid.Row="0" 
+                                           Grid.Column="1"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="End"
+                                           Text="{Binding Note.Name}"
+                                           FontAttributes="Bold" />
                                     <Label Grid.Row="2"
-                                            Grid.Column="2"
-                                            Text="{Binding Note.OdoRemind}"
-                                            FontAttributes="Bold" />
+                                           Grid.Column="2"
+                                           HorizontalTextAlignment="Center"
+                                           FontAttributes="Italic">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                         Binding="{Binding Note.HasRemind}"
+                                                         Value="True">
+                                                <Setter Property="Text"
+                                                        Value="{Binding Note.OdoRemind, StringFormat='Check at {0} km'}">
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
                                 </Grid>
                             </VerticalStackLayout>
                         </Border>

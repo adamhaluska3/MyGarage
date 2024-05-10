@@ -118,7 +118,10 @@ public class Database : IDisposable
         await Init();
         return (await connection.Table<Note>()
             .Where(note => note.VehicleId == vehicleId)
-            .OrderBy(x => x.Type)
+            .OrderByDescending(x => x.HasRemind)
+            .ThenBy(x => x.OdoRemind)
+            .ThenBy(x => x.Type)
+            .ThenBy(x => x.Name)
             .ToListAsync());
     }
 

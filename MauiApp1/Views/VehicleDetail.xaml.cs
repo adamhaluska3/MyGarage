@@ -24,6 +24,7 @@ public partial class VehicleDetail : ContentPage
         vehicle.BodyType = (VehicleType)VehicleBodyType.SelectedIndex;
         vehicle.FuelType = (FuelType)vehicleFuel.SelectedIndex;
 
+        // TODO try-catch
         vehicle.Name = vehicle.Name.Trim();
         vehicle.Make = vehicle.Make.Trim();
         vehicle.Model = vehicle.Model.Trim();

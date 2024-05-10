@@ -17,7 +17,10 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -75,27 +78,40 @@
                         Text="{Binding Description, Mode=TwoWay}"
                         Placeholder="Description"/>
 
+                <Label Text="Add next check reminder:"
+                       HorizontalOptions="Center"
+                       Padding="10"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="7" />
+                <CheckBox x:Name="HasRemind"
+                          HorizontalOptions="Center"
+                          Grid.Column="1"
+                          Grid.Row="7"
+                          IsChecked="{Binding HasRemind, Mode=TwoWay}" />
+
                 <Label Text="Next check at:" 
                        HorizontalOptions="Center"
                        Padding="10"
                        VerticalOptions="CenterAndExpand"
                        Grid.Column="0"
-                       Grid.Row="7"/>
+                       Grid.Row="8"/>
                 <Entry x:Name="NoteOdo"
                        HorizontalOptions="FillAndExpand"
                        Grid.Column="1"
-                       Grid.Row="7"
+                       Grid.Row="8"
+                       IsEnabled="{Binding HasRemind}"
                        Text="{Binding OdoRemind, Mode=TwoWay}"
                        Placeholder="Odometer state"/>
 
                 <Button x:Name="saveChanges"
                         Grid.ColumnSpan="2"
-                        Grid.Row="9"
+                        Grid.Row="10"
                         Pressed="UpdateEntry"
                         Text="Save" />
                 <Button x:Name="deleteEntry"
                         Grid.Column="2"
-                        Grid.Row="10"
+                        Grid.Row="11"
                         Margin="00, 10, 0, 0"
                         BackgroundColor="Red"
                         Pressed="RemoveEntry"
