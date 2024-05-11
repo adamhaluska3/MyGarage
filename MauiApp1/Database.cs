@@ -1,7 +1,7 @@
 ﻿using SQLite;
-using MauiApp1.Models;
+using MyGarage.Models;
 
-namespace MauiApp1;
+namespace MyGarage;
 
 public class Database : IDisposable
 {

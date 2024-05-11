@@ -2,7 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
 
-namespace MauiApp1.Models;
+namespace MyGarage.Models;
 
 
 public class Note : ObservableObject

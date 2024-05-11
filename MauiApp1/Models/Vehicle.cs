@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
 
-namespace MauiApp1.Models;
+namespace MyGarage.Models;
 
 public class Vehicle : ObservableObject
 {

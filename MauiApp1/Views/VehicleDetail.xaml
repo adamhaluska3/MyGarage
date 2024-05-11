@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MauiApp1.VehicleDetail"
+    x:Class="MyGarage.VehicleDetail"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cp="https://trungnt2910.github.io/schemas/maui/2022/colorpicker"

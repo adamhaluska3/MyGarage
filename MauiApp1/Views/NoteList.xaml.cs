@@ -1,7 +1,7 @@
-using MauiApp1.Models;
-using MauiApp1.Models.VisualModels;
+using MyGarage.Models;
+using MyGarage.Models.VisualModels;
 
-namespace MauiApp1.Views;
+namespace MyGarage.Views;
 
 public partial class NoteList : ContentPage
 {

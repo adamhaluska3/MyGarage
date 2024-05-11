@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
-using MauiApp1.Views;
+using MyGarage.Views;
 using Microsoft.Maui.LifecycleEvents;
 
-namespace MauiApp1
+namespace MyGarage
 {
     public static class MauiProgram
     {

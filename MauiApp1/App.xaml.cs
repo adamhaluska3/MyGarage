@@ -1,4 +1,4 @@
-﻿namespace MauiApp1
+﻿namespace MyGarage
 {
     public partial class App : Application
     {

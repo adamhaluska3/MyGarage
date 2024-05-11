@@ -1,8 +1,8 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using MauiApp1.Models;
+using MyGarage.Models;
 
-namespace MauiApp1.Views;
+namespace MyGarage.Views;
 
 public partial class NoteDetail
 {

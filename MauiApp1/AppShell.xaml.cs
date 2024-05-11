@@ -1,7 +1,7 @@
-﻿using MauiApp1.Models.VisualModels;
-using MauiApp1.Views;
+﻿using MyGarage.Models.VisualModels;
+using MyGarage.Views;
 
-namespace MauiApp1
+namespace MyGarage
 {
     public partial class AppShell : Shell
     {

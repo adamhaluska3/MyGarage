@@ -1,4 +1,4 @@
-﻿namespace MauiApp1.Models;
+﻿namespace MyGarage.Models;
 
 public enum VehicleType
 {

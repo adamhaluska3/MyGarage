@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using MauiApp1.Models;
+using MyGarage.Models;
 
-namespace MauiApp1;
+namespace MyGarage;
 
 public partial class VehicleDetail : ContentPage
 {

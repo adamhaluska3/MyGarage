@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace MauiApp1;
+namespace MyGarage;
 
 public static class Constants
 {

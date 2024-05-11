@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace MauiApp1.Models.VisualModels;
+namespace MyGarage.Models.VisualModels;
 
 public class NoteItem
 {
