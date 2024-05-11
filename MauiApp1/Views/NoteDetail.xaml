@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Views.NoteDetail"
-             Title="{Binding Name}">
+<ContentPage
+    x:Class="MauiApp1.Views.NoteDetail"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding Name}">
     <ScrollView>
         <VerticalStackLayout x:Name="_verticalStack">
-            <Label x:Name ="TitleLabel" 
-                   Text="" />
+            <Label x:Name="TitleLabel" Text="" />
             <Grid Padding="30">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Text="Name:" 
-                       HorizontalOptions="Center"
-                       Padding="10"
-                       VerticalOptions="CenterAndExpand"
-                       Grid.Column="0"
-                       Grid.Row="0"/>
-                <Entry x:Name="NoteName"
-                       HorizontalOptions="FillAndExpand"
-                       Grid.Column="1"
-                       Grid.Row="0"
-                       Text="{Binding Name, Mode=TwoWay}"
-                       Placeholder="Name"/>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    Text="Name:"
+                    VerticalOptions="CenterAndExpand" />
+                <Entry
+                    x:Name="NoteName"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Name"
+                    Text="{Binding Name, Mode=TwoWay}" />
 
-                <Label Text="Type:" 
-                       HorizontalOptions="Center"
-                       Padding="10"
-                       VerticalOptions="CenterAndExpand"
-                       Grid.Column="0"
-                       Grid.Row="1"/>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    Text="Type:"
+                    VerticalOptions="CenterAndExpand" />
 
-                <Picker x:Name="NoteType"
-                        Grid.Column="1"
-                        Grid.Row="1"
-                        SelectedIndex="{Binding Type, Mode=TwoWay}">
+                <Picker
+                    x:Name="NoteType"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    SelectedIndex="{Binding Type, Mode=TwoWay}">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Engine</x:String>
@@ -64,61 +68,70 @@
                     </Picker.ItemsSource>
                 </Picker>
 
-                <Label Text="Description:" 
-                       HorizontalOptions="Center"
-                       Padding="10"
-                       VerticalOptions="CenterAndExpand"
-                       Grid.Column="0"
-                       Grid.Row="3"/>
-                <Editor x:Name="NoteDescription"
-                        HorizontalOptions="FillAndExpand"
-                        Grid.Column="1"
-                        Grid.Row="3"
-                        Grid.RowSpan="3"
-                        Text="{Binding Description, Mode=TwoWay}"
-                        Placeholder="Description"/>
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    Text="Description:"
+                    VerticalOptions="CenterAndExpand" />
+                <Editor
+                    x:Name="NoteDescription"
+                    Grid.Row="3"
+                    Grid.RowSpan="3"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Description"
+                    Text="{Binding Description, Mode=TwoWay}" />
 
-                <Label Text="Add next check reminder:"
-                       HorizontalOptions="Center"
-                       Padding="10"
-                       VerticalOptions="CenterAndExpand"
-                       Grid.Column="0"
-                       Grid.Row="7" />
-                <CheckBox x:Name="HasRemind"
-                          HorizontalOptions="Center"
-                          Grid.Column="1"
-                          Grid.Row="7"
-                          IsChecked="{Binding HasRemind, Mode=TwoWay}" />
+                <Label
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    Text="Add next check reminder:"
+                    VerticalOptions="CenterAndExpand" />
+                <CheckBox
+                    x:Name="HasRemind"
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    CheckedChanged="HasRemind_CheckedChanged"
+                    HorizontalOptions="Center"
+                    IsChecked="{Binding HasRemind, Mode=TwoWay}" />
 
-                <Label Text="Next check at:" 
-                       HorizontalOptions="Center"
-                       Padding="10"
-                       VerticalOptions="CenterAndExpand"
-                       Grid.Column="0"
-                       Grid.Row="8"/>
-                <Entry x:Name="NoteOdo"
-                       HorizontalOptions="FillAndExpand"
-                       Grid.Column="1"
-                       Grid.Row="8"
-                       IsEnabled="{Binding HasRemind}"
-                       Text="{Binding OdoRemind, Mode=TwoWay}"
-                       Placeholder="Odometer state"/>
+                <Label
+                    Grid.Row="8"
+                    Grid.Column="0"
+                    Padding="10"
+                    HorizontalOptions="Center"
+                    Text="Next check at:"
+                    VerticalOptions="CenterAndExpand" />
+                <Entry
+                    x:Name="NoteOdo"
+                    Grid.Row="8"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="{Binding HasRemind}"
+                    Placeholder="Odometer state"
+                    Text="{Binding OdoRemind, Mode=TwoWay}" />
 
-                <Button x:Name="saveChanges"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="10"
-                        Pressed="UpdateEntry"
-                        Text="Save" />
-                <Button x:Name="deleteEntry"
-                        Grid.Column="2"
-                        Grid.Row="11"
-                        Margin="00, 10, 0, 0"
-                        BackgroundColor="Red"
-                        Pressed="RemoveEntry"
-                        Text="Delete" />
+                <Button
+                    x:Name="saveChanges"
+                    Grid.Row="10"
+                    Grid.ColumnSpan="2"
+                    Pressed="UpdateEntry"
+                    Text="Save" />
+                <Button
+                    x:Name="deleteEntry"
+                    Grid.Row="11"
+                    Grid.Column="2"
+                    Margin="00,10,0,0"
+                    BackgroundColor="Red"
+                    Pressed="RemoveEntry"
+                    Text="Delete" />
 
             </Grid>
-            
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

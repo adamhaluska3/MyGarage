@@ -32,12 +32,8 @@ namespace MauiApp1
         {
             var vehicle = new Vehicle();
             var vehicleDetailPage = new VehicleDetail(vehicle);
-            // TODO ANDROID ERROR int -> enum
-            try
-            {
-                vehicleDetailPage.BindingContext = vehicle;
-            }
-            catch { }
+            vehicleDetailPage.BindingContext = vehicle;
+
             await Navigation.PushAsync(vehicleDetailPage, true);
         }
         private async void Reload(object sender, EventArgs args)

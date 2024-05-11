@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.Views.NoteList"
-             Title="{Binding Name, StringFormat='{0:s}\'s notes'}">
+<ContentPage
+    x:Class="MauiApp1.Views.NoteList"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Loading...">
     <ScrollView>
-        <VerticalStackLayout x:Name="_verticalStack"
-                             Padding="30">
-            <Entry x:Name="stringFilter"
-                   Margin="30, 30, 30, 0" 
-                   Placeholder="Search:"
-                   TextChanged="FilterNotes"/>
-            <Picker x:Name="noteTypeFilter"
-                    Margin="30"
-                    Title="Filter by type"
-                    SelectedIndexChanged="FilterNotes">
+        <VerticalStackLayout x:Name="_verticalStack" Padding="30">
+            <Entry
+                x:Name="stringFilter"
+                Margin="30,30,30,0"
+                Placeholder="Search:"
+                TextChanged="FilterNotes" />
+            <Picker
+                x:Name="noteTypeFilter"
+                Title="Filter by type"
+                Margin="30,10,30,30"
+                SelectedIndexChanged="FilterNotes">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Engine</x:String>
@@ -26,14 +28,14 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <CollectionView x:Name="notesCollection"
-                            EmptyView="No Notes">
+            <BoxView HeightRequest="2" />
+
+            <CollectionView x:Name="notesCollection" EmptyView="No Notes">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border>
                             <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="NavigateNoteDetail"
-                                              CommandParameter="{Binding Note}" />
+                                <TapGestureRecognizer CommandParameter="{Binding Note}" Tapped="NavigateNoteDetail" />
                             </Border.GestureRecognizers>
                             <VerticalStackLayout>
                                 <Grid Padding="15">
@@ -46,29 +48,31 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="2*" />
                                     </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="3"
-                                           Grid.Column ="0"
-                                           Source="{Binding Note.ImageSource}"
-                                           HeightRequest="50"
-                                           Margin="0"
-                                           Aspect="AspectFit" />
-                                    <Label Grid.Row="0" 
-                                           Grid.Column="1"
-                                           HorizontalTextAlignment="Center"
-                                           VerticalTextAlignment="End"
-                                           Text="{Binding Note.Name}"
-                                           FontAttributes="Bold" />
-                                    <Label Grid.Row="2"
-                                           Grid.Column="2"
-                                           HorizontalTextAlignment="Center"
-                                           FontAttributes="Italic">
+                                    <Image
+                                        Grid.RowSpan="3"
+                                        Grid.Column="0"
+                                        Margin="0"
+                                        Aspect="AspectFit"
+                                        HeightRequest="100"
+                                        Source="{Binding Note.ImageSource}" />
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding Note.Name}"
+                                        VerticalTextAlignment="End" />
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="2"
+                                        FontAttributes="Italic"
+                                        HorizontalTextAlignment="Center">
                                         <Label.Triggers>
-                                            <DataTrigger TargetType="Label"
-                                                         Binding="{Binding Note.HasRemind}"
-                                                         Value="True">
-                                                <Setter Property="Text"
-                                                        Value="{Binding Note.OdoRemind, StringFormat='Check at {0} km'}">
-                                                </Setter>
+                                            <DataTrigger
+                                                Binding="{Binding Note.HasRemind}"
+                                                TargetType="Label"
+                                                Value="True">
+                                                <Setter Property="Text" Value="{Binding Note.OdoRemind, StringFormat='Check at {0:###,#} km'}" />
                                             </DataTrigger>
                                         </Label.Triggers>
                                     </Label>
@@ -78,9 +82,10 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Add"
-                    Clicked="AddNote"
-                    Margin="30"/>
+            <Button
+                Margin="30"
+                Clicked="AddNote"
+                Text="Add" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

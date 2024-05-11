@@ -24,9 +24,9 @@ public class Vehicle : ObservableObject
     public int Color_R { get; set; }
     public int Color_G { get; set; }
     public int Color_B { get; set; }
-    public VehicleType BodyType { get; set; }
+    public int BodyType { get; set; } // VehicleType
     public string ImageSource {  get; set; }
-    public FuelType FuelType { get; set; }
+    public int FuelType { get; set; } // FuelType
 
     public int ExpectedWeekOdo { get; set; }
 
@@ -36,7 +36,7 @@ public class Vehicle : ObservableObject
 
     public Vehicle(string name, string make, string model, int year, 
                    string regNumber, string vin, int color_r, int color_g, 
-                   int color_b, VehicleType bodyType, FuelType fuelType, int expectedWeekOdo)
+                   int color_b, int bodyType, int fuelType, int expectedWeekOdo)
     {
         Name = name;
         Make = make;

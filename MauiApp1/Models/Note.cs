@@ -13,7 +13,7 @@ public class Note : ObservableObject
     [ForeignKey("Id")]
     public int VehicleId { get; set; }
 
-    public NoteType Type { get; set; }
+    public int Type { get; set; } // NoteType
     public string ImageSource { get; set; }
 
     [MaxLength(100)]

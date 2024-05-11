@@ -55,9 +55,6 @@ public class Database : IDisposable
     {
         await Init();
         return await connection.FindAsync<Vehicle>(id);
-        //return (await connection.Table<Vehicle>().ToListAsync())
-        //    .Where(candidate => candidate.Id == id)
-        //    .FirstOrDefault();
     }
 
     public async Task<Vehicle?> UpdateVehicle(Vehicle updatedEntry)
@@ -141,7 +138,7 @@ public class Database : IDisposable
         NoteType type;
         if (Enum.IsDefined(typeof(NoteType), typeFilter))
         {
-            notes = notes.Where(note => note.Type == (NoteType)typeFilter).ToList();
+            notes = notes.Where(note => note.Type == typeFilter).ToList();
         }
 
         return notes;

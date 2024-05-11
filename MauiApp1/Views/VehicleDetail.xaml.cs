@@ -2,7 +2,6 @@ using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using MauiApp1.Models;
-using MauiApp1.Models.Viewmodels;
 
 namespace MauiApp1;
 
@@ -21,18 +20,25 @@ public partial class VehicleDetail : ContentPage
 
     private async void UpdateEntry(object sender, EventArgs e)
     {
-        vehicle.BodyType = (VehicleType)VehicleBodyType.SelectedIndex;
-        vehicle.FuelType = (FuelType)vehicleFuel.SelectedIndex;
+        try
+        {
+            vehicle.Name = vehicle.Name.Trim();
+            vehicle.Make = vehicle.Make.Trim();
+            vehicle.Model = vehicle.Model.Trim();
+            vehicle.RegNumber = vehicle.RegNumber.Trim();
 
-        // TODO try-catch
-        vehicle.Name = vehicle.Name.Trim();
-        vehicle.Make = vehicle.Make.Trim();
-        vehicle.Model = vehicle.Model.Trim();
-        vehicle.RegNumber = vehicle.RegNumber.Trim();
+            if (vehicle.Name == "" || vehicle.Make == "" || vehicle.Model == "" || vehicle.RegNumber == "")
+                throw new NullReferenceException();
+        }
+        catch (NullReferenceException)
+        {
+            await DisplayAlert("Invalid data", "All fields need to be filled in.", "OK");
+            return;
+        }
 
-        vehicle.ImageSource = vehicle.BodyType.ToString().ToLowerInvariant() + ".png";
+        vehicle.ImageSource = ((VehicleType)vehicle.BodyType).ToString().ToLowerInvariant() + ".png";
 
-        var newVehicle = (await App.Database.UpdateVehicle(vehicle));
+        var newVehicle = await App.Database.UpdateVehicle(vehicle);
         if (newVehicle == null)
         {
             await DisplayAlert("Invalid data", "Reg. number and VIN need to be unique.", "OK");

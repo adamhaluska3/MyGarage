@@ -1,6 +1,5 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Mvvm.ComponentModel;
 using MauiApp1.Models;
 
 namespace MauiApp1.Views;
@@ -8,7 +7,7 @@ namespace MauiApp1.Views;
 public partial class NoteDetail
 {
 	private Note Note;
-	private string VehicleName; // TODO
+	private string VehicleName;
 
 	public NoteDetail(string vehicleName, Note note)
 	{
@@ -28,7 +27,12 @@ public partial class NoteDetail
 
 	private async void UpdateEntry(object sender, EventArgs e)
 	{
-        Note.Type = (NoteType)NoteType.SelectedIndex;
+        //Note.Type = (NoteType)NoteType.SelectedIndex;
+        if (Note.Name == null || Note.Name == "")
+        {
+            await DisplayAlert("Invalid data", "Empty name.", "OK");
+            return;
+        }
         Note.ImageSource = ChooseImageSource(Note.Type);
         if (!Note.HasRemind)
             Note.OdoRemind = 0;
@@ -99,10 +103,15 @@ public partial class NoteDetail
     }
 
 
-    private string ChooseImageSource(NoteType type)
+    private string ChooseImageSource(int type)
     {
-        string output = type.ToString().ToLowerInvariant() + ".png";
+        string output = ((NoteType)type).ToString().ToLowerInvariant() + ".png";
 
         return output;
+    }
+
+    private void HasRemind_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        NoteOdo.IsEnabled = HasRemind.IsChecked;
     }
 }

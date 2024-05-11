@@ -15,13 +15,16 @@ public partial class NoteList : ContentPage
 		LoadNotes();
 		BindingContext = this;
 
+		
+
 		InitializeComponent();
 	}
 
 	private async Task LoadVehicle()
 	{
 		currentVehicle = await App.Database.GetVehicle(vehicleId);
-	}
+        Title = $"{currentVehicle.Name}'s notes";
+    }
 
 	private async Task LoadNotes()
 	{
