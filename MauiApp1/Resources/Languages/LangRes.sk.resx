@@ -195,19 +195,28 @@
   <data name="Make" xml:space="preserve">
     <value>Značka</value>
   </data>
+  <data name="MakeLabel" xml:space="preserve">
+    <value>Značka</value>
+  </data>
   <data name="Minivan" xml:space="preserve">
     <value>Minivan</value>
   </data>
   <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="ModelLabel" xml:space="preserve">
     <value>Model:</value>
   </data>
   <data name="Name" xml:space="preserve">
+    <value>Meno</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
     <value>Meno:</value>
   </data>
   <data name="NewNote" xml:space="preserve">
     <value>Nová poznámka</value>
   </data>
-  <data name="NextCheckAt" xml:space="preserve">
+  <data name="NextCheckAtLabel" xml:space="preserve">
     <value>Ďalšia kontrola:</value>
   </data>
   <data name="NoNotes" xml:space="preserve">
@@ -232,6 +241,9 @@
     <value>Naozaj chcete odstrániť </value>
   </data>
   <data name="RegNum" xml:space="preserve">
+    <value>EČV</value>
+  </data>
+  <data name="RegNumLabel" xml:space="preserve">
     <value>EČV:</value>
   </data>
   <data name="Save" xml:space="preserve">
@@ -259,6 +271,9 @@
     <value>Kombi</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Rok:</value>
+    <value>Rok</value>
+  </data>
+  <data name="YearLabel" xml:space="preserve">
+    <value>Rok výroby:</value>
   </data>
 </root>

@@ -3,8 +3,14 @@
     x:Class="MyGarage.Views.NoteDetail"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MyGarage.Converters"
     xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{Binding Name}">
+
+    <ContentPage.Resources>
+        <converters:StringToIntConverter x:Key="stringToInt" />
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout x:Name="_verticalStack">
             <Label x:Name="TitleLabel" Text="" />
@@ -105,7 +111,7 @@
                     IsEnabled="{Binding HasRemind}"
                     Keyboard="Numeric"
                     Placeholder="Odometer state"
-                    Text="{Binding OdoRemind, Mode=TwoWay, TargetNullValue='0', FallbackValue='0'}" />
+                    Text="{Binding OdoRemind, Mode=TwoWay, TargetNullValue='0', FallbackValue='0', Converter={StaticResource stringToInt}}" />
 
                 <Button
                     x:Name="saveChanges"

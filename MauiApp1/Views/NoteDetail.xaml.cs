@@ -45,8 +45,7 @@ public partial class NoteDetail
 
     private async void UpdateEntry(object sender, EventArgs e)
 	{
-        if (NoteOdo.Text == null || NoteOdo.Text == "" 
-            || !Note.HasRemind)
+        if (!Note.HasRemind || Note.OdoRemind == 0)
         {
             Note.HasRemind = false;
             Note.OdoRemind = 0;
