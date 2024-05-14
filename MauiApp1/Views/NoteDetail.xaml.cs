@@ -1,6 +1,7 @@
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using MyGarage.Models;
+using MyGarage.Resources.Languages;
 
 namespace MyGarage.Views;
 
@@ -14,38 +15,60 @@ public partial class NoteDetail
 		Note = note;
 		VehicleName = vehicleName;
 		InitializeComponent();
-        TitleLabel.Text = $"Note for {VehicleName}";
+        TitleLabel.Text = $"{LangRes.Notefor} {VehicleName}";
 
         if (note.Id == -1)
             deleteEntry.IsEnabled = false;
 
         if (note.Name == null)
         {
-            Title = "New Note";
+            Title = LangRes.NewNote;
         }
+
+        LoadPicker();
+
     }
 
-	private async void UpdateEntry(object sender, EventArgs e)
+    private void LoadPicker()
+    {
+        var options = new List<string>()
+        {
+            LangRes.Engine,
+            LangRes.Chassis,
+            LangRes.Interior,
+            LangRes.Body,
+            LangRes.Other,
+        };
+
+        NoteType.ItemsSource = options;
+    }
+
+    private async void UpdateEntry(object sender, EventArgs e)
 	{
-        //Note.Type = (NoteType)NoteType.SelectedIndex;
+        if (NoteOdo.Text == null || NoteOdo.Text == "" 
+            || !Note.HasRemind)
+        {
+            Note.HasRemind = false;
+            Note.OdoRemind = 0;
+        }
+
         if (Note.Name == null || Note.Name == "")
         {
-            await DisplayAlert("Invalid data", "Empty name.", "OK");
+            await DisplayAlert(LangRes.InvalidData, LangRes.EmptyName, "OK");
             return;
         }
+
         Note.ImageSource = ChooseImageSource(Note.Type);
-        if (!Note.HasRemind)
-            Note.OdoRemind = 0;
 
         var newNote = (await App.Database.UpdateNote(Note));
         if (newNote == null)
         {
-            await DisplayAlert("Invalid data", "Reg. number and VIN need to be unique.", "OK");
+            await DisplayAlert(LangRes.InvalidData, LangRes.UniqRegVIN, "OK");
             return;
         }
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar("Entry updated.");
+        var snackbar = MakeSnackbar(LangRes.EntryUpdated);
 
         await snackbar.Show(cancellationTokenSource.Token);
 
@@ -58,14 +81,14 @@ public partial class NoteDetail
     }
     private async void RemoveEntry(object sender, EventArgs e)
 	{
-        bool answer = await DisplayAlert("Remove", "Do you really want to remove this note?", "Yes", "No");
+        bool answer = await DisplayAlert(LangRes.Remove, LangRes.ReallyRemove, LangRes.Yes, LangRes.No);
         if (!answer)
             return;
 
         await App.Database.RemoveNote(Note.Id);
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar("Entry deleted.");
+        var snackbar = MakeSnackbar(LangRes.EntryDeleted);
 
         await snackbar.Show(cancellationTokenSource.Token);
 

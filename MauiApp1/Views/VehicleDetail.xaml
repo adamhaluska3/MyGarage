@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cp="https://trungnt2910.github.io/schemas/maui/2022/colorpicker"
+    xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{Binding Name, Mode=OneWay}">
     <ScrollView>
         <VerticalStackLayout x:Name="_verticalStack">
@@ -35,14 +36,14 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Name:"
+                    Text="{x:Static strings:LangRes.NameLabel}"
                     VerticalOptions="CenterAndExpand" />
                 <Entry
                     x:Name="VehicleName"
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
-                    Placeholder="Name"
+                    Placeholder="{x:Static strings:LangRes.Name}"
                     Text="{Binding Name, Mode=TwoWay}" />
 
                 <Label
@@ -50,7 +51,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Make:"
+                    Text="{x:Static strings:LangRes.MakeLabel}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Entry
@@ -58,7 +59,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
-                    Placeholder="Make"
+                    Placeholder="{x:Static strings:LangRes.Make}"
                     Text="{Binding Make, Mode=TwoWay}" />
 
                 <Label
@@ -66,7 +67,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Model:"
+                    Text="{x:Static strings:LangRes.ModelLabel}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Entry
@@ -74,7 +75,7 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
-                    Placeholder="Model"
+                    Placeholder="{x:Static strings:LangRes.Model}"
                     Text="{Binding Model, Mode=TwoWay}" />
 
 
@@ -83,7 +84,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Year:"
+                    Text="{x:Static strings:LangRes.YearLabel}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Entry
@@ -91,7 +92,7 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
-                    Placeholder="Year"
+                    Placeholder="{x:Static strings:LangRes.Year}"
                     Text="{Binding Year, Mode=TwoWay}" />
 
                 <Label
@@ -99,7 +100,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Reg. Number:"
+                    Text="{x:Static strings:LangRes.RegNumLabel}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Entry
@@ -107,7 +108,7 @@
                     Grid.Row="6"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
-                    Placeholder="RegNum"
+                    Placeholder="{x:Static strings:LangRes.RegNum}"
                     Text="{Binding RegNumber, Mode=TwoWay}" />
 
                 <Label
@@ -115,7 +116,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="VIN:"
+                    Text="{x:Static strings:LangRes.VINLabel}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Entry
@@ -123,7 +124,7 @@
                     Grid.Row="7"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
-                    Placeholder="VIN"
+                    Placeholder="{x:Static strings:LangRes.VIN}"
                     Text="{Binding VIN, Mode=TwoWay}" />
 
 
@@ -132,52 +133,28 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Body type:"
+                    Text="{x:Static strings:LangRes.BodyType}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Picker
                     x:Name="VehicleBodyType"
                     Grid.Row="9"
                     Grid.Column="1"
-                    SelectedIndex="{Binding BodyType, Mode=TwoWay}">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Hatchback</x:String>
-                            <x:String>Sedan</x:String>
-                            <x:String>SUV</x:String>
-                            <x:String>Crossover</x:String>
-                            <x:String>Coupe</x:String>
-                            <x:String>Convertible</x:String>
-                            <x:String>Wagon</x:String>
-                            <x:String>Minivan</x:String>
-                            <x:String>Pickup</x:String>
-                            <x:String>Supercar</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                    SelectedIndex="{Binding BodyType, Mode=TwoWay}" />
 
                 <Label
                     Grid.Row="10"
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Fuel type:"
+                    Text="{x:Static strings:LangRes.FuelType}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Picker
                     x:Name="vehicleFuel"
                     Grid.Row="10"
                     Grid.Column="1"
-                    SelectedIndex="{Binding FuelType, Mode=TwoWay}">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Petrol</x:String>
-                            <x:String>Diesel</x:String>
-                            <x:String>LPG</x:String>
-                            <x:String>Electric</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                    SelectedIndex="{Binding FuelType, Mode=TwoWay}" />
             </Grid>
             <Grid Padding="30">
                 <Grid.RowDefinitions>
@@ -195,7 +172,7 @@
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
                     Pressed="UpdateEntry"
-                    Text="Save" />
+                    Text="{x:Static strings:LangRes.Save}" />
                 <Button
                     x:Name="deleteEntry"
                     Grid.Row="1"
@@ -203,7 +180,7 @@
                     Margin="00,10,0,0"
                     BackgroundColor="Red"
                     Pressed="RemoveEntry"
-                    Text="Delete" />
+                    Text="{x:Static strings:LangRes.Delete}" />
             </Grid>
         </VerticalStackLayout>
     </ScrollView>

@@ -3,18 +3,14 @@
     x:Class="MyGarage.MainPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Title="MyGarage">
-
-
-    <!--<ContentPage.Behaviors>-->
-    <!--<toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light=white, Dark=black}" StatusBarStyle="Default" />
-    </ContentPage.Behaviors>-->
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            <CollectionView x:Name="VehiclesCollectionView" EmptyView="No Vehicles.">
+            <CollectionView x:Name="VehiclesCollectionView" EmptyView="{x:Static strings:LangRes.NoVehicles}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border>
@@ -65,7 +61,7 @@
                                         Margin="0,10,0,0"
                                         Clicked="NavigateVehicleDetail"
                                         CommandParameter="{Binding Vehicle}"
-                                        Text="Edit" />
+                                        Text="{x:Static strings:LangRes.Edit}" />
                                 </Grid>
                             </VerticalStackLayout>
                         </Border>
@@ -85,7 +81,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     Clicked="CreateVehicle"
-                    Text="Add new"
+                    Text="{x:Static strings:LangRes.AddNew}"
                     WidthRequest="100" />
             </Grid>
         </VerticalStackLayout>

@@ -3,6 +3,7 @@
     x:Class="MyGarage.Views.NoteDetail"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{Binding Name}">
     <ScrollView>
         <VerticalStackLayout x:Name="_verticalStack">
@@ -34,7 +35,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Name:"
+                    Text="{x:Static strings:LangRes.Name}"
                     VerticalOptions="CenterAndExpand" />
                 <Entry
                     x:Name="NoteName"
@@ -49,31 +50,21 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Type:"
+                    Text="{x:Static strings:LangRes.Type}"
                     VerticalOptions="CenterAndExpand" />
 
                 <Picker
                     x:Name="NoteType"
                     Grid.Row="1"
                     Grid.Column="1"
-                    SelectedIndex="{Binding Type, Mode=TwoWay}">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Engine</x:String>
-                            <x:String>Chassis</x:String>
-                            <x:String>Interior</x:String>
-                            <x:String>Body</x:String>
-                            <x:String>Other</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                    SelectedIndex="{Binding Type, Mode=TwoWay}" />
 
                 <Label
                     Grid.Row="3"
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Description:"
+                    Text="{x:Static strings:LangRes.Description}"
                     VerticalOptions="CenterAndExpand" />
                 <Editor
                     x:Name="NoteDescription"
@@ -89,7 +80,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Add next check reminder:"
+                    Text="{x:Static strings:LangRes.AddNextCheck}"
                     VerticalOptions="CenterAndExpand" />
                 <CheckBox
                     x:Name="HasRemind"
@@ -104,7 +95,7 @@
                     Grid.Column="0"
                     Padding="10"
                     HorizontalOptions="Center"
-                    Text="Next check at:"
+                    Text="{x:Static strings:LangRes.NextCheckAtLabel}"
                     VerticalOptions="CenterAndExpand" />
                 <Entry
                     x:Name="NoteOdo"
@@ -112,15 +103,16 @@
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
                     IsEnabled="{Binding HasRemind}"
+                    Keyboard="Numeric"
                     Placeholder="Odometer state"
-                    Text="{Binding OdoRemind, Mode=TwoWay}" />
+                    Text="{Binding OdoRemind, Mode=TwoWay, TargetNullValue='0', FallbackValue='0'}" />
 
                 <Button
                     x:Name="saveChanges"
                     Grid.Row="10"
                     Grid.ColumnSpan="2"
                     Pressed="UpdateEntry"
-                    Text="Save" />
+                    Text="{x:Static strings:LangRes.Save}" />
                 <Button
                     x:Name="deleteEntry"
                     Grid.Row="11"
@@ -128,7 +120,7 @@
                     Margin="00,10,0,0"
                     BackgroundColor="Red"
                     Pressed="RemoveEntry"
-                    Text="Delete" />
+                    Text="{x:Static strings:LangRes.Delete}" />
 
             </Grid>
 

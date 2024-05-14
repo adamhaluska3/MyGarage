@@ -1,5 +1,7 @@
 using MyGarage.Models;
 using MyGarage.Models.VisualModels;
+using MyGarage.Resources.Languages;
+using System.Globalization;
 
 namespace MyGarage.Views;
 
@@ -14,16 +16,37 @@ public partial class NoteList : ContentPage
 		LoadVehicle();
 		LoadNotes();
 		BindingContext = this;
-
-		
-
 		InitializeComponent();
+
+		LoadPicker();
 	}
 
-	private async Task LoadVehicle()
+    private void LoadPicker()
+    {
+		var options = new List<string>()
+		{
+			LangRes.Engine,
+			LangRes.Chassis,
+			LangRes.Interior,
+			LangRes.Body,
+			LangRes.Other,
+			LangRes.Any,
+		};
+
+		noteTypeFilter.ItemsSource = options;
+    }
+
+    private async Task LoadVehicle()
 	{
 		currentVehicle = await App.Database.GetVehicle(vehicleId);
-        Title = $"{currentVehicle.Name}'s notes";
+
+		var currentLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+		if (currentLanguage == "sk")
+			Title = $"Poznámky vozidla {currentVehicle.Name}";
+
+		else
+			Title = $"{currentVehicle.Name}'s notes";
     }
 
 	private async Task LoadNotes()

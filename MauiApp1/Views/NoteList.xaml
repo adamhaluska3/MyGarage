@@ -3,30 +3,20 @@
     x:Class="MyGarage.Views.NoteList"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="Loading...">
     <ScrollView>
         <VerticalStackLayout x:Name="_verticalStack" Padding="30">
             <Entry
                 x:Name="stringFilter"
                 Margin="30,30,30,0"
-                Placeholder="Search:"
+                Placeholder="{x:Static strings:LangRes.Search}"
                 TextChanged="FilterNotes" />
             <Picker
                 x:Name="noteTypeFilter"
-                Title="Filter by type"
+                Title="{x:Static strings:LangRes.FilterByType}"
                 Margin="30,10,30,30"
-                SelectedIndexChanged="FilterNotes">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Engine</x:String>
-                        <x:String>Chassis</x:String>
-                        <x:String>Interior</x:String>
-                        <x:String>Body</x:String>
-                        <x:String>Other</x:String>
-                        <x:String>Any</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
+                SelectedIndexChanged="FilterNotes" />
 
             <BoxView HeightRequest="2" />
 
@@ -72,7 +62,15 @@
                                                 Binding="{Binding Note.HasRemind}"
                                                 TargetType="Label"
                                                 Value="True">
-                                                <Setter Property="Text" Value="{Binding Note.OdoRemind, StringFormat='Check at {0:###,#} km'}" />
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0} {1} km">
+                                                            <Binding Source="{x:Static strings:LangRes.CheckAtKm}" />
+                                                            <Binding Path="Note.OdoRemind" />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <!--<Setter Property="Text" Value="{Binding Note.OdoRemind, StringFormat='Check at {0:###,#} km'}" />-->
                                             </DataTrigger>
                                         </Label.Triggers>
                                     </Label>
@@ -85,7 +83,7 @@
             <Button
                 Margin="30"
                 Clicked="AddNote"
-                Text="Add" />
+                Text="{x:Static strings:LangRes.AddNew}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using MyGarage.Models;
+using MyGarage.Resources.Languages;
 
 namespace MyGarage;
 
@@ -16,6 +17,37 @@ public partial class VehicleDetail : ContentPage
 
         if (vehicle.Id == -1)
             deleteEntry.IsEnabled = false;
+
+        LoadPickers();
+    }
+
+    private void LoadPickers()
+    {
+        var options = new List<string>()
+        {
+            LangRes.Hatchback,
+            LangRes.Sedan,
+            LangRes.SUV,
+            LangRes.Crossover,
+            LangRes.Coupe,
+            LangRes.Convertible,
+            LangRes.Wagon,
+            LangRes.Minivan,
+            LangRes.Pickup,
+            LangRes.Supercar
+        };
+
+        VehicleBodyType.ItemsSource = options;
+
+        options = new List<string>()
+        {
+            LangRes.Petrol,
+            LangRes.Diesel,
+            LangRes.LPG,
+            LangRes.Electric
+        };
+
+        vehicleFuel.ItemsSource = options;
     }
 
     private async void UpdateEntry(object sender, EventArgs e)
@@ -32,7 +64,7 @@ public partial class VehicleDetail : ContentPage
         }
         catch (NullReferenceException)
         {
-            await DisplayAlert("Invalid data", "All fields need to be filled in.", "OK");
+            await DisplayAlert(LangRes.InvalidData, LangRes.EmptyFields, "OK");
             return;
         }
 
@@ -41,12 +73,12 @@ public partial class VehicleDetail : ContentPage
         var newVehicle = await App.Database.UpdateVehicle(vehicle);
         if (newVehicle == null)
         {
-            await DisplayAlert("Invalid data", "Reg. number and VIN need to be unique.", "OK");
+            await DisplayAlert(LangRes.InvalidData, LangRes.UniqRegVIN, "OK");
             return;
         }
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar("Entry updated.");
+        var snackbar = MakeSnackbar(LangRes.EntryUpdated);
 
         await snackbar.Show(cancellationTokenSource.Token);
 
@@ -58,14 +90,14 @@ public partial class VehicleDetail : ContentPage
 
     private async void RemoveEntry(object sender, EventArgs e)
     {
-        bool answer = await DisplayAlert("Remove", "Do you really want to remove " + vehicle.Name + " ?", "Yes", "No");
+        bool answer = await DisplayAlert(LangRes.Remove, LangRes.ReallyRemoveVehicle + vehicle.Name + " ?", LangRes.Yes, LangRes.No);
         if (!answer)
             return;
 
         await App.Database.RemoveVehicle(vehicle.Id);
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar("Entry deleted.");
+        var snackbar = MakeSnackbar(LangRes.EntryDeleted);
 
         await snackbar.Show(cancellationTokenSource.Token);
 
