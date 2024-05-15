@@ -18,6 +18,11 @@ public partial class VehicleDetail : ContentPage
         if (vehicle.Id == -1)
             deleteEntry.IsEnabled = false;
 
+        if (vehicle.Name == null)
+        {
+            Title = LangRes.NewVehicle;
+        }
+
         LoadPickers();
     }
 
@@ -84,6 +89,7 @@ public partial class VehicleDetail : ContentPage
 
         BindingContext = newVehicle;
         vehicle = newVehicle;
+        Title = newVehicle.Name;
         deleteEntry.IsEnabled = true;
 
     }

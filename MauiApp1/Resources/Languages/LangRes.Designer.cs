@@ -376,6 +376,15 @@ namespace MyGarage.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New vehicle.
+        /// </summary>
+        internal static string NewVehicle {
+            get {
+                return ResourceManager.GetString("NewVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next check at:.
         /// </summary>
         internal static string NextCheckAtLabel {

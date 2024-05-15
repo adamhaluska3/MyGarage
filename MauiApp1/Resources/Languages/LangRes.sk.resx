@@ -168,6 +168,9 @@
   <data name="EmptyFields" xml:space="preserve">
     <value>Všetky polia musia byť vyplnené.</value>
   </data>
+  <data name="EmptyName" xml:space="preserve">
+    <value>Meno nesmie byť prázdne.</value>
+  </data>
   <data name="Engine" xml:space="preserve">
     <value>Motor</value>
   </data>
@@ -188,6 +191,9 @@
   </data>
   <data name="Interior" xml:space="preserve">
     <value>Interiér</value>
+  </data>
+  <data name="InvalidData" xml:space="preserve">
+    <value>Nesprávne dáta</value>
   </data>
   <data name="LPG" xml:space="preserve">
     <value>LPG</value>
@@ -215,6 +221,9 @@
   </data>
   <data name="NewNote" xml:space="preserve">
     <value>Nová poznámka</value>
+  </data>
+  <data name="NewVehicle" xml:space="preserve">
+    <value>Nové vozidlo</value>
   </data>
   <data name="NextCheckAtLabel" xml:space="preserve">
     <value>Ďalšia kontrola:</value>
@@ -263,6 +272,9 @@
   </data>
   <data name="Type" xml:space="preserve">
     <value>Typ:</value>
+  </data>
+  <data name="UniqRegVIN" xml:space="preserve">
+    <value>EČV a VIN musia byť unikátne.</value>
   </data>
   <data name="VIN" xml:space="preserve">
     <value>VIN:</value>

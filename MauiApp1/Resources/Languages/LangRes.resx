@@ -222,6 +222,9 @@
   <data name="NewNote" xml:space="preserve">
     <value>New Note</value>
   </data>
+  <data name="NewVehicle" xml:space="preserve">
+    <value>New vehicle</value>
+  </data>
   <data name="NextCheckAtLabel" xml:space="preserve">
     <value>Next check at:</value>
   </data>
