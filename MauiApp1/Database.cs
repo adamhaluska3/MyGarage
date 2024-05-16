@@ -128,17 +128,27 @@ public class Database : IDisposable
 
         var notes = (await connection.Table<Note>().ToListAsync())
             .Where(note => note.VehicleId == vehicleId)
+            .OrderByDescending(x => x.HasRemind)
+            .ThenBy(x => x.OdoRemind)
+            .ThenBy(x => x.Type)
+            .ThenBy(x => x.Name)
             .ToList();
 
         if (filter != "" && filter != null)
         {
-            notes = notes.Where(note => note.Description.Contains(filter)).ToList();
+
+            notes = notes
+                .Where(note => (note.Description != null && note.Description.Contains(filter)) ||
+                               (note.Name.Contains(filter)))
+                .ToList();
         }
 
         NoteType type;
         if (Enum.IsDefined(typeof(NoteType), typeFilter))
         {
-            notes = notes.Where(note => note.Type == typeFilter).ToList();
+            notes = notes
+                .Where(note => note.Type == typeFilter)
+                .ToList();
         }
 
         return notes;
