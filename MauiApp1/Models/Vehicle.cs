@@ -21,12 +21,9 @@ public class Vehicle : ObservableObject
     [MaxLength(50), Unique]
     public string VIN {  get; set; }
 
-    public int Color_R { get; set; }
-    public int Color_G { get; set; }
-    public int Color_B { get; set; }
-    public int BodyType { get; set; } // VehicleType
+    public VehicleType BodyType { get; set; }
     public string ImageSource {  get; set; }
-    public int FuelType { get; set; } // FuelType
+    public FuelType FuelType { get; set; }
 
     public int ExpectedWeekOdo { get; set; }
 
@@ -35,8 +32,8 @@ public class Vehicle : ObservableObject
     }
 
     public Vehicle(string name, string make, string model, int year, 
-                   string regNumber, string vin, int color_r, int color_g, 
-                   int color_b, int bodyType, int fuelType, int expectedWeekOdo)
+                   string regNumber, string vin, VehicleType bodyType, 
+                   FuelType fuelType, int expectedWeekOdo)
     {
         Name = name;
         Make = make;
@@ -44,9 +41,6 @@ public class Vehicle : ObservableObject
         Year = year;
         RegNumber = regNumber;
         VIN = vin;
-        Color_R = color_r;
-        Color_G = color_g;
-        Color_B = color_b;
         BodyType = bodyType;
         FuelType = fuelType;
         ExpectedWeekOdo = expectedWeekOdo;

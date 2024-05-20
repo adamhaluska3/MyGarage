@@ -3,9 +3,16 @@
     x:Class="MyGarage.VehicleDetail"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MyGarage.Converters"
     xmlns:cp="https://trungnt2910.github.io/schemas/maui/2022/colorpicker"
     xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{Binding Name, Mode=OneWay}">
+
+    <ContentPage.Resources>
+        <converters:IntToVehicleType x:Key="intToVehicleType" />
+        <converters:IntToFuelType x:Key="intToFuelType" />
+    </ContentPage.Resources>
+
     <ScrollView>
         <VerticalStackLayout x:Name="_verticalStack">
             <Grid Padding="30">
@@ -140,7 +147,7 @@
                     x:Name="VehicleBodyType"
                     Grid.Row="9"
                     Grid.Column="1"
-                    SelectedIndex="{Binding BodyType, Mode=TwoWay}" />
+                    SelectedIndex="{Binding BodyType, Mode=TwoWay, Converter={StaticResource intToVehicleType}}" />
 
                 <Label
                     Grid.Row="10"
@@ -154,7 +161,7 @@
                     x:Name="vehicleFuel"
                     Grid.Row="10"
                     Grid.Column="1"
-                    SelectedIndex="{Binding FuelType, Mode=TwoWay}" />
+                    SelectedIndex="{Binding FuelType, Mode=TwoWay, Converter={StaticResource intToFuelType}}" />
             </Grid>
             <Grid Padding="30">
                 <Grid.RowDefinitions>
