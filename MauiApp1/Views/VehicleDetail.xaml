@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:MyGarage.Converters"
     xmlns:cp="https://trungnt2910.github.io/schemas/maui/2022/colorpicker"
+    xmlns:local="clr-namespace:MyGarage"
     xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{Binding Name, Mode=OneWay}">
 
@@ -50,6 +51,7 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
+                    MaxLength="{x:Static local:Constants.VehicleNameLength}"
                     Placeholder="{x:Static strings:LangRes.Name}"
                     Text="{Binding Name, Mode=TwoWay}" />
 
@@ -66,6 +68,7 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
+                    MaxLength="{x:Static local:Constants.VehicleMakeModelLength}"
                     Placeholder="{x:Static strings:LangRes.Make}"
                     Text="{Binding Make, Mode=TwoWay}" />
 
@@ -82,6 +85,7 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
+                    MaxLength="{x:Static local:Constants.VehicleMakeModelLength}"
                     Placeholder="{x:Static strings:LangRes.Model}"
                     Text="{Binding Model, Mode=TwoWay}" />
 
@@ -115,6 +119,7 @@
                     Grid.Row="6"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
+                    MaxLength="{x:Static local:Constants.VehicleRegNumLength}"
                     Placeholder="{x:Static strings:LangRes.RegNum}"
                     Text="{Binding RegNumber, Mode=TwoWay}" />
 
@@ -131,6 +136,7 @@
                     Grid.Row="7"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
+                    MaxLength="{x:Static local:Constants.VehicleVINLength}"
                     Placeholder="{x:Static strings:LangRes.VIN}"
                     Text="{Binding VIN, Mode=TwoWay}" />
 

@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:MyGarage.Converters"
+    xmlns:local="clr-namespace:MyGarage"
     xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{Binding Name}">
 
@@ -56,6 +57,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
+                    MaxLength="{x:Static local:Constants.NoteNameLength}"
                     Placeholder="Name"
                     Text="{Binding Name, Mode=TwoWay}" />
 
@@ -86,6 +88,7 @@
                     Grid.RowSpan="3"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
+                    MaxLength="{x:Static local:Constants.NoteDescriptionLength}"
                     Placeholder="Description"
                     Text="{Binding Description, Mode=TwoWay}" />
 

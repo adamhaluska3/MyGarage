@@ -15,4 +15,16 @@ public static class Constants
 
     public static string DatabasePath =>
         Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
+
+    // Input lengths (Changes influence database)
+    public const int VehicleNameLength = 100;
+    public const int VehicleMakeModelLength = 50;
+    public const int VehicleRegNumLength = 20;
+    public const int VehicleVINLength = 50;
+
+    public const int NoteNameLength = 100;
+    public const int NoteDescriptionLength = 1000;
+
+    // Other
+    public const int LowestYearAllowed = 1900;
 }

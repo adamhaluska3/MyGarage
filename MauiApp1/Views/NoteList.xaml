@@ -70,7 +70,6 @@
                                                         </MultiBinding>
                                                     </Setter.Value>
                                                 </Setter>
-                                                <!--<Setter Property="Text" Value="{Binding Note.OdoRemind, StringFormat='Check at {0:###,#} km'}" />-->
                                             </DataTrigger>
                                         </Label.Triggers>
                                     </Label>
@@ -80,10 +79,22 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button
-                Margin="30"
-                Clicked="AddNote"
-                Text="{x:Static strings:LangRes.AddNew}" />
+
+            <Grid Padding="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Clicked="AddNote"
+                    Text="{x:Static strings:LangRes.AddNew}"
+                    WidthRequest="100" />
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -73,7 +73,13 @@ public partial class VehicleDetail : ContentPage
             return;
         }
 
-        vehicle.ImageSource = ((VehicleType)vehicle.BodyType).ToString().ToLowerInvariant() + ".png";
+        if (vehicle.Year < Constants.LowestYearAllowed || vehicle.Year > DateTime.Now.Year)
+        {
+            await DisplayAlert(LangRes.InvalidData, LangRes.InvalidYear, "OK");
+            return;
+        }
+
+        vehicle.ImageSource = (vehicle.BodyType).ToString().ToLowerInvariant() + ".png";
 
         var newVehicle = await App.Database.UpdateVehicle(vehicle);
         if (newVehicle == null)

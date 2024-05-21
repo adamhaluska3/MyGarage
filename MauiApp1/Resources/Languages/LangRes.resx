@@ -195,6 +195,9 @@
   <data name="InvalidData" xml:space="preserve">
     <value>Invalid data</value>
   </data>
+  <data name="InvalidYear" xml:space="preserve">
+    <value>The provided year is invalid.</value>
+  </data>
   <data name="LPG" xml:space="preserve">
     <value>LPG</value>
   </data>

@@ -60,11 +60,6 @@ public partial class NoteDetail
         Note.ImageSource = ChooseImageSource(Note.Type);
 
         var newNote = (await App.Database.UpdateNote(Note));
-        if (newNote == null)
-        {
-            await DisplayAlert(LangRes.InvalidData, LangRes.UniqRegVIN, "OK");
-            return;
-        }
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         var snackbar = MakeSnackbar(LangRes.EntryUpdated);

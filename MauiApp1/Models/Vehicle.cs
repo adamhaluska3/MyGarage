@@ -8,17 +8,17 @@ public class Vehicle : ObservableObject
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; } = -1;
 
-    [MaxLength(100)]
+    [MaxLength(Constants.VehicleNameLength)]
     public string Name { get; set; }
-    [MaxLength(50)]
+    [MaxLength(Constants.VehicleMakeModelLength)]
     public string Make { get; set; }
-    [MaxLength(50)]
+    [MaxLength(Constants.VehicleMakeModelLength)]
     public string Model { get; set; }
     public int Year { get; set; }
 
-    [MaxLength(20), Unique]
+    [MaxLength(Constants.VehicleRegNumLength), Unique]
     public string RegNumber { get; set; }
-    [MaxLength(50), Unique]
+    [MaxLength(Constants.VehicleVINLength), Unique]
     public string VIN {  get; set; }
 
     public VehicleType BodyType { get; set; }

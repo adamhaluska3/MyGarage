@@ -62,6 +62,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Views\NewFolder\**" />
+	  <Compile Remove="Views\NewFolder\**" />
+	  <EmbeddedResource Remove="Views\NewFolder\**" />
+	  <MauiCss Remove="Views\NewFolder\**" />
+	  <MauiXaml Remove="Views\NewFolder\**" />
+	  <None Remove="Views\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
@@ -100,7 +109,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Builds\" />
-	  <Folder Include="Views\NewFolder\" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -139,7 +139,7 @@
     <value>Podvozok</value>
   </data>
   <data name="CheckAtKm" xml:space="preserve">
-    <value>Skontrolovať na </value>
+    <value>Skontrolovať na</value>
   </data>
   <data name="Convertible" xml:space="preserve">
     <value>Kabriolet</value>
@@ -194,6 +194,9 @@
   </data>
   <data name="InvalidData" xml:space="preserve">
     <value>Nesprávne dáta</value>
+  </data>
+  <data name="InvalidYear" xml:space="preserve">
+    <value>Zadaný rok je neplatný.</value>
   </data>
   <data name="LPG" xml:space="preserve">
     <value>LPG</value>

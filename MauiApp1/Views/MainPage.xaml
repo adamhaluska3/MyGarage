@@ -70,15 +70,14 @@
             </CollectionView>
             <Grid Padding="30">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Button
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.Column="1"
                     Clicked="CreateVehicle"
                     Text="{x:Static strings:LangRes.AddNew}"

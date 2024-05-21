@@ -295,6 +295,15 @@ namespace MyGarage.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The provided year is invalid..
+        /// </summary>
+        internal static string InvalidYear {
+            get {
+                return ResourceManager.GetString("InvalidYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LPG.
         /// </summary>
         internal static string LPG {
