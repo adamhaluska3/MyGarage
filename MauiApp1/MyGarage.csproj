@@ -102,6 +102,12 @@
 	  <MauiXaml Update="Views\NoteList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\OdometerData.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\VehicleData.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VehicleDetail.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

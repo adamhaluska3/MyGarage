@@ -60,12 +60,8 @@ namespace MyGarage
         {
             var vehicle = e.Parameter as Vehicle;
 
-            var noteListpage = new NoteList(vehicle.Id);
-
-            var currentVehicle = await App.Database.GetVehicle(vehicle.Id);
-            noteListpage.BindingContext = currentVehicle;
-
-            await Navigation.PushAsync(noteListpage, true);
+            var vehicleDataPage = new VehicleData(vehicle.Id, vehicle);
+            await Navigation.PushAsync(vehicleDataPage, true);
         }
     }
 

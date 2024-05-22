@@ -10,14 +10,17 @@ public partial class NoteList : ContentPage
 	public int vehicleId;
 	public Vehicle currentVehicle;
 
-	public NoteList(int vehicleId)
+	public NoteList(int vehicleId, Vehicle vehicle)
 	{
 		this.vehicleId = vehicleId;
-		LoadVehicle();
+		currentVehicle = vehicle;
+
 		LoadNotes();
+
 		BindingContext = this;
 		InitializeComponent();
 
+		SetTitle();
 		LoadPicker();
 	}
 
@@ -36,10 +39,8 @@ public partial class NoteList : ContentPage
 		noteTypeFilter.ItemsSource = options;
     }
 
-    private async Task LoadVehicle()
+    private void SetTitle()
 	{
-		currentVehicle = await App.Database.GetVehicle(vehicleId);
-
 		var currentLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
 		if (currentLanguage == "sk")
