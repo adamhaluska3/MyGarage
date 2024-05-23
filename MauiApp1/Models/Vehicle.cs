@@ -18,7 +18,7 @@ public class Vehicle : ObservableObject
 
     [MaxLength(Constants.VehicleRegNumLength), Unique]
     public string RegNumber { get; set; }
-    [MaxLength(Constants.VehicleVINLength), Unique]
+    [MaxLength(Constants.VehicleVinLength), Unique]
     public string VIN {  get; set; }
 
     public VehicleType BodyType { get; set; }

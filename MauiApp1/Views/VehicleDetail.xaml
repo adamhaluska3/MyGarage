@@ -136,7 +136,7 @@
                     Grid.Row="7"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
-                    MaxLength="{x:Static local:Constants.VehicleVINLength}"
+                    MaxLength="{x:Static local:Constants.VehicleVinLength}"
                     Placeholder="{x:Static strings:LangRes.VIN}"
                     Text="{Binding VIN, Mode=TwoWay}" />
 

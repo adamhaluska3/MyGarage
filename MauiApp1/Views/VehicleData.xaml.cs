@@ -11,8 +11,9 @@ public partial class VehicleData : TabbedPage
 		this.vehicleId = vehicleId;
         currentVehicle = vehicle;
 
-        InitializeComponent();
+		InitializeComponent();
 
-        Children.Add(new NoteList(vehicleId, currentVehicle));
+		Children.Add(new NoteList(vehicleId, currentVehicle));
+		Children.Add(new OdometerData(vehicleId));
 	}
 }

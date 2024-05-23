@@ -20,7 +20,7 @@ public static class Constants
     public const int VehicleNameLength = 100;
     public const int VehicleMakeModelLength = 50;
     public const int VehicleRegNumLength = 20;
-    public const int VehicleVINLength = 50;
+    public const int VehicleVinLength = 50;
 
     public const int NoteNameLength = 100;
     public const int NoteDescriptionLength = 1000;

@@ -62,7 +62,7 @@ public partial class NoteDetail
         var newNote = (await App.Database.UpdateNote(Note));
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar(LangRes.EntryUpdated);
+        var snackbar = Utilities.MakeSnackbar(LangRes.EntryUpdated, Navigation);
 
         await snackbar.Show(cancellationTokenSource.Token);
 
@@ -82,7 +82,7 @@ public partial class NoteDetail
         await App.Database.RemoveNote(Note.Id);
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar(LangRes.EntryDeleted);
+        var snackbar = Utilities.MakeSnackbar(LangRes.EntryDeleted, Navigation);
 
         await snackbar.Show(cancellationTokenSource.Token);
 
@@ -98,25 +98,6 @@ public partial class NoteDetail
     private async Task LoadBindings()
     {
         BindingContext = Note;
-    }
-
-    private ISnackbar MakeSnackbar(string message)
-    {
-        var snackbarOptions = new SnackbarOptions
-        {
-            CornerRadius = new CornerRadius(10),
-            Font = Microsoft.Maui.Font.SystemFontOfSize(14),
-            ActionButtonFont = Microsoft.Maui.Font.SystemFontOfSize(14),
-        };
-
-        string text = message;
-        string actionButtonText = "OK";
-        Action action = async () => await Navigation.PopAsync();
-        TimeSpan duration = TimeSpan.FromSeconds(3);
-
-        var snackbar = Snackbar.Make(text, action, actionButtonText, duration, snackbarOptions);
-
-        return snackbar;
     }
 
 

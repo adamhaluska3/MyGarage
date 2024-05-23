@@ -88,6 +88,15 @@ namespace MyGarage.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Average distance per week.
+        /// </summary>
+        internal static string AverageOdoLabel {
+            get {
+                return ResourceManager.GetString("AverageOdoLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Body.
         /// </summary>
         internal static string Body {
@@ -156,6 +165,15 @@ namespace MyGarage.Resources.Languages {
         internal static string Crossover {
             get {
                 return ResourceManager.GetString("Crossover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date:.
+        /// </summary>
+        internal static string DateLabel {
+            get {
+                return ResourceManager.GetString("DateLabel", resourceCulture);
             }
         }
         
@@ -291,6 +309,15 @@ namespace MyGarage.Resources.Languages {
         internal static string InvalidData {
             get {
                 return ResourceManager.GetString("InvalidData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid state of odometer..
+        /// </summary>
+        internal static string InvalidOdoState {
+            get {
+                return ResourceManager.GetString("InvalidOdoState", resourceCulture);
             }
         }
         
@@ -439,6 +466,24 @@ namespace MyGarage.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Odometer.
+        /// </summary>
+        internal static string OdometerTitle {
+            get {
+                return ResourceManager.GetString("OdometerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to State of odometer:.
+        /// </summary>
+        internal static string OdoStateLabel {
+            get {
+                return ResourceManager.GetString("OdoStateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Other.
         /// </summary>
         internal static string Other {
@@ -552,6 +597,15 @@ namespace MyGarage.Resources.Languages {
         internal static string SUV {
             get {
                 return ResourceManager.GetString("SUV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total distance driven.
+        /// </summary>
+        internal static string TotalOdoLabel {
+            get {
+                return ResourceManager.GetString("TotalOdoLabel", resourceCulture);
             }
         }
         

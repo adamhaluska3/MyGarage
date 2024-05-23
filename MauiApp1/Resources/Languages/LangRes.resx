@@ -126,6 +126,9 @@
   <data name="Any" xml:space="preserve">
     <value>Any</value>
   </data>
+  <data name="AverageOdoLabel" xml:space="preserve">
+    <value>Average distance per week</value>
+  </data>
   <data name="Body" xml:space="preserve">
     <value>Body</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Crossover" xml:space="preserve">
     <value>Crossover</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date:</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
@@ -194,6 +200,9 @@
   </data>
   <data name="InvalidData" xml:space="preserve">
     <value>Invalid data</value>
+  </data>
+  <data name="InvalidOdoState" xml:space="preserve">
+    <value>Invalid state of odometer.</value>
   </data>
   <data name="InvalidYear" xml:space="preserve">
     <value>The provided year is invalid.</value>
@@ -243,6 +252,12 @@
   <data name="NoVehicles" xml:space="preserve">
     <value>No vehicles.</value>
   </data>
+  <data name="OdometerTitle" xml:space="preserve">
+    <value>Odometer</value>
+  </data>
+  <data name="OdoStateLabel" xml:space="preserve">
+    <value>State of odometer:</value>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>Other</value>
   </data>
@@ -281,6 +296,9 @@
   </data>
   <data name="SUV" xml:space="preserve">
     <value>SUV</value>
+  </data>
+  <data name="TotalOdoLabel" xml:space="preserve">
+    <value>Total distance driven</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type:</value>

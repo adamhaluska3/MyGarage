@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyGarage.Models.VisualModels;
+﻿namespace MyGarage.Models.VisualModels;
 
 internal class VehicleItem
 {

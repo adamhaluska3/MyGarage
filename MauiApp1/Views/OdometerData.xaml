@@ -2,8 +2,116 @@
 <ContentPage
     x:Class="MyGarage.Views.OdometerData"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-    <ScrollView>
-        <Label Text="eepy" />
-    </ScrollView>
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
+    Title="{x:Static strings:LangRes.OdometerTitle}">
+
+
+    <StackLayout Padding="30">
+        <Border>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="30"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static strings:LangRes.TotalOdoLabel}" />
+
+                <Label
+                    x:Name="OdometerSum"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="30"
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"
+                    Text="-" />
+
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="30"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="{x:Static strings:LangRes.AverageOdoLabel}" />
+
+                <Label
+                    x:Name="OdoAverage"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="30"
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"
+                    Text="-.-" />
+            </Grid>
+        </Border>
+
+        <CollectionView
+            x:Name="statesCollection"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            EmptyView="No entries">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding OdometerState}" Tapped="NavigateOdometerStateDetail" />
+                        </Border.GestureRecognizers>
+                        <VerticalStackLayout>
+                            <Grid Padding="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Text="{Binding OdometerState.DateTime, StringFormat='{0:d}'}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding OdometerState.State, StringFormat='{}{0:#,##,#} km'}" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Grid Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Clicked="AddOdometerState"
+                Text="{x:Static strings:LangRes.AddNew}"
+                WidthRequest="100" />
+        </Grid>
+
+
+    </StackLayout>
+
 </ContentPage>

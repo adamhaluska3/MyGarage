@@ -64,7 +64,7 @@
                                                 Value="True">
                                                 <Setter Property="Text">
                                                     <Setter.Value>
-                                                        <MultiBinding StringFormat="{}{0} {1} km">
+                                                        <MultiBinding StringFormat="{}{0} {1:#,##,#} km">
                                                             <Binding Source="{x:Static strings:LangRes.CheckAtKm}" />
                                                             <Binding Path="Note.OdoRemind" />
                                                         </MultiBinding>

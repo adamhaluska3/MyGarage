@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using MyGarage.Models;
+using MyGarage.Views;
 
 namespace MyGarage;
 
@@ -25,6 +26,7 @@ public class Database : IDisposable
         connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         await connection.CreateTableAsync<Vehicle>();
         await connection.CreateTableAsync<Note>();
+        await connection.CreateTableAsync<OdometerState>();
     }
 
 
@@ -136,14 +138,12 @@ public class Database : IDisposable
 
         if (filter != "" && filter != null)
         {
-
             notes = notes
                 .Where(note => (note.Description != null && note.Description.Contains(filter)) ||
                                (note.Name.Contains(filter)))
                 .ToList();
         }
 
-        NoteType type;
         if (Enum.IsDefined(typeof(NoteType), typeFilter))
         {
             notes = notes
@@ -152,8 +152,49 @@ public class Database : IDisposable
         }
 
         return notes;
-
     }
 
+    public async Task<List<OdometerState>> GetOdometerStates(int vehicleId)
+    {
+        await Init();
 
+        var states = await connection.Table<OdometerState>().ToListAsync();
+
+        return states
+            .Where(e => e.VehicleId == vehicleId)
+            .ToList();            
+    }
+
+    public async Task<int> AddOdometerState(OdometerState newState)
+    {
+        await Init();
+
+        return await connection.InsertAsync(newState);
+    }
+
+    public async Task<int> RemoveOdometerState(int id)
+    {
+        await Init();
+
+        return await connection.DeleteAsync<OdometerState>(id);
+    }
+
+    public async Task<OdometerState> UpdateOdometerState(OdometerState updatedState)
+    {
+        await Init();
+
+        try
+        {
+            if (updatedState.Id == -1)
+                await AddOdometerState(updatedState);
+            else
+                await connection.UpdateAsync(updatedState);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+
+        return await connection.FindAsync<OdometerState>(updatedState.Id);
+    }
 }

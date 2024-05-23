@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MyGarage.Views.OdoStateDetail"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MyGarage.Converters"
+    xmlns:local="clr-namespace:MyGarage"
+    xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
+    Title="Odometer State">
+
+    <ContentPage.Resources>
+        <converters:StringToIntConverter x:Key="stringToInt" />
+    </ContentPage.Resources>
+
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid Padding="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="{x:Static strings:LangRes.DateLabel}" />
+
+                <DatePicker
+                    x:Name="OdoStateDatePicker"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Date="{Binding DateTime}"
+                    HorizontalOptions="FillAndExpand" />
+
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="{x:Static strings:LangRes.OdoStateLabel}" />
+
+                <Entry
+                    x:Name="OdoState"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Numeric"
+                    Placeholder="Odometer state"
+                    Text="{Binding State, Mode=TwoWay, TargetNullValue='0', FallbackValue='0', Converter={StaticResource stringToInt}}" />
+
+
+                <Button
+                    x:Name="SaveChanges"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Pressed="UpdateEntry"
+                    Text="{x:Static strings:LangRes.Save}" />
+                <Button
+                    x:Name="DeleteEntry"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Margin="00,10,0,0"
+                    BackgroundColor="Red"
+                    Pressed="RemoveEntry"
+                    Text="{x:Static strings:LangRes.Delete}" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
