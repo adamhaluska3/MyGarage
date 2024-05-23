@@ -5,13 +5,13 @@ namespace MyGarage.Views;
 
 public partial class OdometerData : ContentPage
 {
-	private int vehicleId;
-	public OdometerData(int vehicleId)
-	{
-		this.vehicleId = vehicleId;
+    private int vehicleId;
+    public OdometerData(int vehicleId)
+    {
+        this.vehicleId = vehicleId;
 
-		InitializeComponent();
-	}
+        InitializeComponent();
+    }
 
     private async void NavigateOdometerStateDetail(object sender, TappedEventArgs e)
     {
@@ -45,18 +45,18 @@ public partial class OdometerData : ContentPage
         var entries = await App.Database.GetOdometerStates(vehicleId);
         if (entries == null || entries.Count() < 2)
         {
-            OdoAverage.Text = "-";
+            OdoAverage.Text = "-.-";
             OdometerSum.Text = "-";
             return;
         }
         var distance = entries.Max(entry => entry.State) - entries.Min(entry => entry.State);
 
-        OdometerSum.Text = $"{distance:#,##,#}";
+        OdometerSum.Text = $"{distance:#,##0}";
 
         // Average
         var dateDifference = entries.Max(entry => entry.DateTime) - entries.Min(entry => entry.DateTime);
 
-        OdoAverage.Text = $"{(float)distance / dateDifference.Days:#,##,#.##}";
+        OdoAverage.Text = $"{(float)distance / dateDifference.Days:#,##0.##}";
 
     }
 

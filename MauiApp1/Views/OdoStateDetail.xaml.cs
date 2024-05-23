@@ -34,7 +34,8 @@ public partial class OdoStateDetail : ContentPage
 
     public async void UpdateEntry(object sender, EventArgs e)
     {
-        if (OdometerState.State == 0)
+
+        if (OdometerState.State == 0 || !await IsValidEntry())
         {
             await DisplayAlert(LangRes.InvalidData, LangRes.InvalidOdoState, "OK");
             return;
@@ -49,6 +50,29 @@ public partial class OdoStateDetail : ContentPage
 
         OdometerState = newEntry;
         DeleteEntry.IsEnabled = true;
+    }
+
+    private async Task<bool> IsValidEntry()
+    {
+        var entries = (await App.Database.GetOdometerStates(OdometerState.VehicleId));
+
+        var predecessor = entries
+            .Where(entry => entry.DateTime < OdometerState.DateTime)
+            .OrderByDescending(entry => entry.State)
+            .FirstOrDefault(defaultValue:null);
+
+        var successor = entries
+            .Where(entry => entry.DateTime > OdometerState.DateTime)
+            .OrderBy(entry => entry.State)
+            .FirstOrDefault(defaultValue: null);
+
+        if (predecessor != null && predecessor.State > OdometerState.State)
+            return false;
+
+        if (successor != null && OdometerState.State > successor.State)
+            return false;
+
+        return true;
     }
 
     public async void RemoveEntry(object sender, EventArgs e)
