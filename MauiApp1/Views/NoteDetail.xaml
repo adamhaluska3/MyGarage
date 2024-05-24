@@ -10,6 +10,7 @@
 
     <ContentPage.Resources>
         <converters:StringToIntConverter x:Key="stringToInt" />
+        <converters:IntToNoteType x:Key="intToNoteType" />
     </ContentPage.Resources>
 
     <ScrollView>
@@ -73,7 +74,7 @@
                     x:Name="NoteType"
                     Grid.Row="2"
                     Grid.Column="1"
-                    SelectedIndex="{Binding Type, Mode=TwoWay}" />
+                    SelectedIndex="{Binding Type, Mode=TwoWay, Converter={StaticResource intToNoteType}}" />
 
                 <Label
                     Grid.Row="4"

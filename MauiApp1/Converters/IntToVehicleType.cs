@@ -12,6 +12,6 @@ public class IntToVehicleType : IValueConverter
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return (VehicleType) value;
+        return (VehicleType)value;
     }
 }
