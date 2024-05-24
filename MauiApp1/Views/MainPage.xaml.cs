@@ -6,13 +6,16 @@ namespace MyGarage
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
-
             LoadVehicles();
+        }
+
+        protected override async void OnAppearing()
+        {
+            await LoadVehicles();
+            base.OnAppearing();
         }
 
         private async Task LoadVehicles()
@@ -28,14 +31,18 @@ namespace MyGarage
             VehiclesCollectionView.ItemsSource = items;
         }
 
+
+        // Event handlers
         private async void CreateVehicle(object sender, EventArgs args)
         {
             var vehicle = new Vehicle();
+
             var vehicleDetailPage = new VehicleDetail(vehicle);
             vehicleDetailPage.BindingContext = vehicle;
 
             await Navigation.PushAsync(vehicleDetailPage, true);
         }
+
         private async void Reload(object sender, EventArgs args)
         {
             await LoadVehicles();
@@ -44,16 +51,9 @@ namespace MyGarage
         private async void NavigateVehicleDetail(object sender, EventArgs args)
         {
             var vehicle = (Vehicle)((Button)sender).CommandParameter;
-            
+
             var vehicleDetailPage = new VehicleDetail(vehicle);
             await Navigation.PushAsync(vehicleDetailPage, true);
-        }
-
-
-        protected override async void OnAppearing()
-        {
-            await LoadVehicles();
-            base.OnAppearing();
         }
 
         private async void ShowNotes(object sender, TappedEventArgs e)

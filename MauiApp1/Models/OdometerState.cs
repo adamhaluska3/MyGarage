@@ -10,7 +10,7 @@ public class OdometerState : ObservableObject
     public int Id { get; set; } = -1;
 
     [ForeignKey("Id")]
-    public int VehicleId {  get; set; }
+    public int VehicleId { get; set; }
 
     public DateTime DateTime { get; set; }
     public int State { get; set; }

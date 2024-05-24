@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="MyGarage.VehicleDetail"
+    x:Class="MyGarage.Views.VehicleDetail"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:MyGarage.Converters"
-    xmlns:cp="https://trungnt2910.github.io/schemas/maui/2022/colorpicker"
     xmlns:local="clr-namespace:MyGarage"
     xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{Binding Name, Mode=OneWay}">
 
     <ContentPage.Resources>
-        <converters:IntToVehicleType x:Key="intToVehicleType" />
-        <converters:IntToFuelType x:Key="intToFuelType" />
+        <converters:IntToVehicleType x:Key="IntToVehicleType" />
+        <converters:IntToFuelType x:Key="IntToFuelType" />
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout x:Name="_verticalStack">
+        <VerticalStackLayout x:Name="VerticalStack">
             <Grid Padding="30">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -132,7 +131,7 @@
                     VerticalOptions="CenterAndExpand" />
 
                 <Entry
-                    x:Name="VehicleVIN"
+                    x:Name="VehicleVin"
                     Grid.Row="7"
                     Grid.Column="1"
                     HorizontalOptions="FillAndExpand"
@@ -153,7 +152,7 @@
                     x:Name="VehicleBodyType"
                     Grid.Row="9"
                     Grid.Column="1"
-                    SelectedIndex="{Binding BodyType, Mode=TwoWay, Converter={StaticResource intToVehicleType}}" />
+                    SelectedIndex="{Binding BodyType, Mode=TwoWay, Converter={StaticResource IntToVehicleType}}" />
 
                 <Label
                     Grid.Row="10"
@@ -164,10 +163,10 @@
                     VerticalOptions="CenterAndExpand" />
 
                 <Picker
-                    x:Name="vehicleFuel"
+                    x:Name="VehicleFuel"
                     Grid.Row="10"
                     Grid.Column="1"
-                    SelectedIndex="{Binding FuelType, Mode=TwoWay, Converter={StaticResource intToFuelType}}" />
+                    SelectedIndex="{Binding FuelType, Mode=TwoWay, Converter={StaticResource IntToFuelType}}" />
             </Grid>
             <Grid Padding="30">
                 <Grid.RowDefinitions>
@@ -181,15 +180,15 @@
 
 
                 <Button
-                    x:Name="saveChanges"
+                    x:Name="SaveChanges"
                     Grid.Row="0"
                     Grid.ColumnSpan="2"
                     Pressed="UpdateEntry"
                     Text="{x:Static strings:LangRes.Save}" />
                 <Button
-                    x:Name="deleteEntry"
+                    x:Name="DeleteEntry"
                     Grid.Row="1"
-                    Grid.Column="2"
+                    Grid.Column="1"
                     Margin="00,10,0,0"
                     BackgroundColor="Red"
                     Pressed="RemoveEntry"

@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
-using CommunityToolkit.Maui;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using MyGarage.Views;
-using Microsoft.Maui.LifecycleEvents;
 
 namespace MyGarage
 {
@@ -24,12 +23,8 @@ namespace MyGarage
 
             builder.Services.AddSingleton<Database>();
 
-            builder.Services.AddTransient<VehicleDetail>();
-
-            builder.Services.AddTransient<NoteList>();
-
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

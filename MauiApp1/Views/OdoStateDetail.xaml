@@ -12,7 +12,6 @@
         <converters:StringToIntConverter x:Key="stringToInt" />
     </ContentPage.Resources>
 
-
     <ScrollView>
         <VerticalStackLayout>
             <Grid Padding="30">
@@ -32,7 +31,6 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Text="{x:Static strings:LangRes.DateLabel}" />
-
                 <DatePicker
                     x:Name="OdoStateDatePicker"
                     Grid.Row="0"
@@ -44,7 +42,6 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Text="{x:Static strings:LangRes.OdoStateLabel}" />
-
                 <Entry
                     x:Name="OdoState"
                     Grid.Row="2"
@@ -53,7 +50,6 @@
                     Keyboard="Numeric"
                     Placeholder="Odometer state"
                     Text="{Binding State, Mode=TwoWay, TargetNullValue='0', FallbackValue='0', Converter={StaticResource stringToInt}}" />
-
 
                 <Button
                     x:Name="SaveChanges"

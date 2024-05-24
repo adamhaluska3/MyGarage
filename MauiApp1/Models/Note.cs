@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SQLite;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyGarage.Models;
 
@@ -13,7 +13,7 @@ public class Note : ObservableObject
     [ForeignKey("Id")]
     public int VehicleId { get; set; }
 
-    public int Type { get; set; } // NoteType
+    public NoteType Type { get; set; }
     public string ImageSource { get; set; }
 
     [MaxLength(100)]
@@ -33,15 +33,5 @@ public class Note : ObservableObject
     public Note(int vehicleId)
     {
         VehicleId = vehicleId;
-    }
-
-    public Note(int id, int vehicleId, string name, string description, DateTime creationTime, int odoRemind)
-    {
-        Id = id;
-        VehicleId = vehicleId;
-        Name = name;
-        Description = description;
-        CreationTime = creationTime;
-        OdoRemind = odoRemind;
     }
 }

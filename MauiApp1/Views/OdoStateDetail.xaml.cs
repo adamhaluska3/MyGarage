@@ -7,12 +7,10 @@ public partial class OdoStateDetail : ContentPage
 {
     private OdometerState OdometerState { get; set; }
 
-    private Vehicle relatedVehicle;
-    private OdometerState relatedVehicleState;
+    private Vehicle _relatedVehicle;
     public OdoStateDetail(OdometerState odometerState)
     {
         OdometerState = odometerState;
-
         BindingContext = OdometerState;
 
         InitializeComponent();
@@ -25,18 +23,34 @@ public partial class OdoStateDetail : ContentPage
 
     private async Task SetupDatePicker()
     {
-        relatedVehicle = await App.Database.GetVehicle(OdometerState.VehicleId);
-        OdoStateDatePicker.MinimumDate = new DateTime(relatedVehicle.Year, 1, 1);
+        _relatedVehicle = await App.Database.GetVehicle(OdometerState.VehicleId);
+        OdoStateDatePicker.MinimumDate = new DateTime(_relatedVehicle.Year, 1, 1);
         OdoStateDatePicker.MaximumDate = DateTime.Today;
+    }
+    private async Task<bool> IsValidEntry()
+    {
+        var entries = (await App.Database.GetOdometerStates(OdometerState.VehicleId));
 
+        var predecessor = entries
+            .Where(entry => entry.DateTime < OdometerState.DateTime)
+            .OrderByDescending(entry => entry.State)
+            .FirstOrDefault(defaultValue: null);
+
+        var successor = entries
+            .Where(entry => entry.DateTime > OdometerState.DateTime)
+            .OrderBy(entry => entry.State)
+            .FirstOrDefault(defaultValue: null);
+
+        return !(predecessor != null && predecessor.State > OdometerState.State)
+            && !(successor != null && OdometerState.State > successor.State);
     }
 
 
+    // Event handlers
     public async void UpdateEntry(object sender, EventArgs e)
     {
         OdoState.IsEnabled = false;
         OdoState.IsEnabled = true;
-
 
         if (OdometerState.State == 0 || !await IsValidEntry())
         {
@@ -53,29 +67,6 @@ public partial class OdoStateDetail : ContentPage
 
         OdometerState = newEntry;
         DeleteEntry.IsEnabled = true;
-    }
-
-    private async Task<bool> IsValidEntry()
-    {
-        var entries = (await App.Database.GetOdometerStates(OdometerState.VehicleId));
-
-        var predecessor = entries
-            .Where(entry => entry.DateTime < OdometerState.DateTime)
-            .OrderByDescending(entry => entry.State)
-            .FirstOrDefault(defaultValue:null);
-
-        var successor = entries
-            .Where(entry => entry.DateTime > OdometerState.DateTime)
-            .OrderBy(entry => entry.State)
-            .FirstOrDefault(defaultValue: null);
-
-        if (predecessor != null && predecessor.State > OdometerState.State)
-            return false;
-
-        if (successor != null && OdometerState.State > successor.State)
-            return false;
-
-        return true;
     }
 
     public async void RemoveEntry(object sender, EventArgs e)

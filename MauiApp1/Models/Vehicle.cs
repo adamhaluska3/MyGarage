@@ -19,30 +19,15 @@ public class Vehicle : ObservableObject
     [MaxLength(Constants.VehicleRegNumLength), Unique]
     public string RegNumber { get; set; }
     [MaxLength(Constants.VehicleVinLength), Unique]
-    public string VIN {  get; set; }
+    public string VIN { get; set; }
 
     public VehicleType BodyType { get; set; }
-    public string ImageSource {  get; set; }
+    public string ImageSource { get; set; }
     public FuelType FuelType { get; set; }
 
-    public int ExpectedWeekOdo { get; set; }
+    public int ExpectedWeekOdo { get; set; } // Date reminder WIP
 
     public Vehicle()
     {
-    }
-
-    public Vehicle(string name, string make, string model, int year, 
-                   string regNumber, string vin, VehicleType bodyType, 
-                   FuelType fuelType, int expectedWeekOdo)
-    {
-        Name = name;
-        Make = make;
-        Model = model;
-        Year = year;
-        RegNumber = regNumber;
-        VIN = vin;
-        BodyType = bodyType;
-        FuelType = fuelType;
-        ExpectedWeekOdo = expectedWeekOdo;
     }
 }

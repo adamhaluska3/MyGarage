@@ -5,6 +5,12 @@ namespace MyGarage;
 
 public static class Utilities
 {
+    /// <summary>
+    /// Creates a SnackBar with given message.
+    /// </summary>
+    /// <param name="message">Message in SnackBar</param>
+    /// <param name="navigation">Navigation context</param>
+    /// <returns>Instance of a SnackBar.</returns>
     public static ISnackbar MakeSnackbar(string message, INavigation navigation)
     {
         var snackbarOptions = new SnackbarOptions

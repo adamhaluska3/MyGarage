@@ -1,29 +1,39 @@
-using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using MyGarage.Models;
 using MyGarage.Resources.Languages;
 
-namespace MyGarage;
+namespace MyGarage.Views;
 
 public partial class VehicleDetail : ContentPage
 {
-    private Vehicle vehicle;
+    private Vehicle _vehicle;
 
     public VehicleDetail(Vehicle v)
     {
-        vehicle = v;
+        _vehicle = v;
         InitializeComponent();
 
-        if (vehicle.Id == -1)
-            deleteEntry.IsEnabled = false;
+        if (_vehicle.Id == -1)
+            DeleteEntry.IsEnabled = false;
 
-        if (vehicle.Name == null)
+        if (_vehicle.Name == null)
         {
             Title = LangRes.NewVehicle;
         }
 
         LoadPickers();
+    }
+
+    protected override void OnAppearing()
+    {
+        LoadBindings();
+        base.OnAppearing();
+    }
+
+    private void LoadBindings()
+    {
+        BindingContext = _vehicle;
     }
 
     private void LoadPickers()
@@ -44,27 +54,30 @@ public partial class VehicleDetail : ContentPage
 
         VehicleBodyType.ItemsSource = options;
 
-        options = new List<string>()
+        var fuelOptions = new List<string>()
         {
             LangRes.Petrol,
             LangRes.Diesel,
             LangRes.LPG,
             LangRes.Electric
+
         };
 
-        vehicleFuel.ItemsSource = options;
+        VehicleFuel.ItemsSource = options;
     }
 
+
+    // Event handlers
     private async void UpdateEntry(object sender, EventArgs e)
     {
         try
         {
-            vehicle.Name = vehicle.Name.Trim();
-            vehicle.Make = vehicle.Make.Trim();
-            vehicle.Model = vehicle.Model.Trim();
-            vehicle.RegNumber = vehicle.RegNumber.Trim();
+            _vehicle.Name = _vehicle.Name.Trim();
+            _vehicle.Make = _vehicle.Make.Trim();
+            _vehicle.Model = _vehicle.Model.Trim();
+            _vehicle.RegNumber = _vehicle.RegNumber.Trim();
 
-            if (vehicle.Name == "" || vehicle.Make == "" || vehicle.Model == "" || vehicle.RegNumber == "")
+            if (_vehicle.Name == "" || _vehicle.Make == "" || _vehicle.Model == "" || _vehicle.RegNumber == "")
                 throw new NullReferenceException();
         }
         catch (NullReferenceException)
@@ -73,15 +86,15 @@ public partial class VehicleDetail : ContentPage
             return;
         }
 
-        if (vehicle.Year < Constants.LowestYearAllowed || vehicle.Year > DateTime.Now.Year)
+        if (_vehicle.Year < Constants.LowestYearAllowed || _vehicle.Year > DateTime.Now.Year)
         {
             await DisplayAlert(LangRes.InvalidData, LangRes.InvalidYear, "OK");
             return;
         }
 
-        vehicle.ImageSource = (vehicle.BodyType).ToString().ToLowerInvariant() + ".png";
+        _vehicle.ImageSource = (_vehicle.BodyType).ToString().ToLowerInvariant() + ".png";
 
-        var newVehicle = await App.Database.UpdateVehicle(vehicle);
+        var newVehicle = await App.Database.UpdateVehicle(_vehicle);
         if (newVehicle == null)
         {
             await DisplayAlert(LangRes.InvalidData, LangRes.UniqRegVIN, "OK");
@@ -89,60 +102,29 @@ public partial class VehicleDetail : ContentPage
         }
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar(LangRes.EntryUpdated);
+        var snackbar = Utilities.MakeSnackbar(LangRes.EntryUpdated, Navigation);
 
         await snackbar.Show(cancellationTokenSource.Token);
 
         BindingContext = newVehicle;
-        vehicle = newVehicle;
+        _vehicle = newVehicle;
         Title = newVehicle.Name;
-        deleteEntry.IsEnabled = true;
-
+        DeleteEntry.IsEnabled = true;
     }
 
     private async void RemoveEntry(object sender, EventArgs e)
     {
-        bool answer = await DisplayAlert(LangRes.Remove, LangRes.ReallyRemoveVehicle + vehicle.Name + " ?", LangRes.Yes, LangRes.No);
+        bool answer = await DisplayAlert(LangRes.Remove, LangRes.ReallyRemoveVehicle + _vehicle.Name + " ?", LangRes.Yes, LangRes.No);
         if (!answer)
             return;
 
-        await App.Database.RemoveVehicle(vehicle.Id);
+        await App.Database.RemoveVehicle(_vehicle.Id);
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        var snackbar = MakeSnackbar(LangRes.EntryDeleted);
+        var snackbar = Utilities.MakeSnackbar(LangRes.EntryDeleted, Navigation);
 
         await snackbar.Show(cancellationTokenSource.Token);
 
         await Navigation.PopAsync();
-
-    }
-    protected override async void OnAppearing()
-    {
-        await LoadBindings();
-        base.OnAppearing();
-    }
-
-    private async Task LoadBindings()
-    {
-        BindingContext = vehicle;
-    }
-
-    private ISnackbar MakeSnackbar(string message)
-    {
-        var snackbarOptions = new SnackbarOptions
-        {
-            CornerRadius = new CornerRadius(10),
-            Font = Microsoft.Maui.Font.SystemFontOfSize(14),
-            ActionButtonFont = Microsoft.Maui.Font.SystemFontOfSize(14),
-        };
-
-        string text = message;
-        string actionButtonText = "OK";
-        Action action = async () => await Navigation.PopAsync();
-        TimeSpan duration = TimeSpan.FromSeconds(3);
-
-        var snackbar = Snackbar.Make(text, action, actionButtonText, duration, snackbarOptions);
-
-        return snackbar;
     }
 }

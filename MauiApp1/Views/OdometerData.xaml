@@ -6,10 +6,8 @@
     xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="{x:Static strings:LangRes.OdometerTitle}">
 
-
     <StackLayout Padding="30">
         <Border>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -29,7 +27,6 @@
                     FontSize="20"
                     HorizontalTextAlignment="Center"
                     Text="{x:Static strings:LangRes.TotalOdoLabel}" />
-
                 <Label
                     x:Name="OdometerSum"
                     Grid.Row="1"
@@ -47,7 +44,6 @@
                     FontSize="20"
                     HorizontalTextAlignment="Center"
                     Text="{x:Static strings:LangRes.AverageOdoLabel}" />
-
                 <Label
                     x:Name="OdoAverage"
                     Grid.Row="1"
@@ -70,6 +66,7 @@
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer CommandParameter="{Binding OdometerState}" Tapped="NavigateOdometerStateDetail" />
                         </Border.GestureRecognizers>
+
                         <VerticalStackLayout>
                             <Grid Padding="15">
                                 <Grid.RowDefinitions>
@@ -103,6 +100,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
             <Button
                 Grid.Row="1"
                 Grid.Column="1"
@@ -110,8 +108,6 @@
                 Text="{x:Static strings:LangRes.AddNew}"
                 WidthRequest="100" />
         </Grid>
-
-
     </StackLayout>
 
 </ContentPage>
