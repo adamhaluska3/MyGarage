@@ -63,7 +63,7 @@ public partial class VehicleDetail : ContentPage
 
         };
 
-        VehicleFuel.ItemsSource = options;
+        VehicleFuel.ItemsSource = fuelOptions;
     }
 
 
