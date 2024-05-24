@@ -34,6 +34,9 @@ public partial class OdoStateDetail : ContentPage
 
     public async void UpdateEntry(object sender, EventArgs e)
     {
+        OdoState.IsEnabled = false;
+        OdoState.IsEnabled = true;
+
 
         if (OdometerState.State == 0 || !await IsValidEntry())
         {

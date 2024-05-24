@@ -80,12 +80,32 @@ public partial class NoteList : ContentPage
 		await Navigation.PushAsync(noteDetailPage, true);
 	}
 
-	private void SetNotesSource(List<Note> notes)
+	private async void SetNotesSource(List<Note> notes)
 	{
+		var entries = await App.Database.GetOdometerStates(vehicleId);
+		int currentVehicleOdo = 0;
+
+		if (entries.Count != 0)
+		{
+			currentVehicleOdo = (await App.Database.GetOdometerStates(vehicleId))
+				.Max(entry => entry.State);
+		}
+
+
+
         var items = new List<NoteItem>();
         foreach (var note in notes)
         {
-            items.Add(new NoteItem(note));
+			var remainingOdo = "";
+
+			if (note.HasRemind)
+			{
+				remainingOdo = (currentVehicleOdo < note.OdoRemind) 
+					? $"{(note.OdoRemind - currentVehicleOdo):#,##,#} km {LangRes.UntilCheck}." 
+					: "Now";
+			}
+
+            items.Add(new NoteItem(note, remainingOdo));
         }
         notesCollection.ItemsSource = items;
     }

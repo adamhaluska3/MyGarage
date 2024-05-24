@@ -56,7 +56,7 @@ public partial class OdometerData : ContentPage
         // Average
         var dateDifference = entries.Max(entry => entry.DateTime) - entries.Min(entry => entry.DateTime);
 
-        OdoAverage.Text = $"{(float)distance / dateDifference.Days:#,##0.##}";
+        OdoAverage.Text = $"{((float)distance / dateDifference.Days) * 7:#,##0.##}";
 
     }
 

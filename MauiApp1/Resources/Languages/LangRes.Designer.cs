@@ -142,6 +142,15 @@ namespace MyGarage.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In.
+        /// </summary>
+        internal static string CheckIn {
+            get {
+                return ResourceManager.GetString("CheckIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Convertible.
         /// </summary>
         internal static string Convertible {
@@ -624,6 +633,15 @@ namespace MyGarage.Resources.Languages {
         internal static string UniqRegVIN {
             get {
                 return ResourceManager.GetString("UniqRegVIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to until check.
+        /// </summary>
+        internal static string UntilCheck {
+            get {
+                return ResourceManager.GetString("UntilCheck", resourceCulture);
             }
         }
         

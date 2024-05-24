@@ -1,5 +1,3 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿namespace MyGarage.Models.VisualModels;
 
-namespace MyGarage.Models.VisualModels;
-
-public record NoteItem(Note Note);
+public record NoteItem(Note Note, string remainingOdo = "");

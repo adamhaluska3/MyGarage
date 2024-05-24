@@ -144,6 +144,9 @@
   <data name="CheckAtKm" xml:space="preserve">
     <value>Check at </value>
   </data>
+  <data name="CheckIn" xml:space="preserve">
+    <value>In</value>
+  </data>
   <data name="Convertible" xml:space="preserve">
     <value>Convertible</value>
   </data>
@@ -305,6 +308,9 @@
   </data>
   <data name="UniqRegVIN" xml:space="preserve">
     <value>Reg. number and VIN need to be unique.</value>
+  </data>
+  <data name="UntilCheck" xml:space="preserve">
+    <value>until check</value>
   </data>
   <data name="VIN" xml:space="preserve">
     <value>VIN</value>
