@@ -8,17 +8,19 @@ public class Database : IDisposable
 { 
     private SQLiteAsyncConnection _connection;
 
-    public void Dispose()
+    public Database()
     {
-        _connection.CloseAsync().Wait();
+        _connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+        InitDb();
     }
 
-    private async Task Init()
+    public void Dispose()
     {
-        if (_connection != null)
-            return;
+        _connection.CloseAsync();
+    }
 
-        _connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+    private async Task InitDb()
+    {
         await _connection.CreateTableAsync<Vehicle>();
         await _connection.CreateTableAsync<Note>();
         await _connection.CreateTableAsync<OdometerState>();
@@ -32,7 +34,6 @@ public class Database : IDisposable
     /// <returns>The number of objects deleted.</returns>
     public async Task<int> RemoveVehicle(int id)
     {
-        await Init();
         await _connection.Table<Note>().DeleteAsync(note => note.VehicleId == id);
 
         return await _connection.DeleteAsync<Vehicle>(id);
@@ -45,7 +46,6 @@ public class Database : IDisposable
     /// <returns>Vehicle with new data.</returns>
     public async Task<Vehicle?> UpdateVehicle(Vehicle updatedEntry)
     {
-        await Init();
         try
         {
             if (updatedEntry.Id == -1)
@@ -68,7 +68,6 @@ public class Database : IDisposable
     /// <returns>List of vehicles.</returns>
     public async Task<List<Vehicle>> GetAllVehicles()
     {
-        await Init();
         return (await _connection.Table<Vehicle>()
             .OrderBy(x => x.Name)
             .ToListAsync());
@@ -81,7 +80,6 @@ public class Database : IDisposable
     /// <returns>Instance of found vehicle, null if not found.</returns>
     public async Task<Vehicle?> GetVehicle(int id)
     {
-        await Init();
         return await _connection.FindAsync<Vehicle>(id);
     }
     
@@ -93,7 +91,6 @@ public class Database : IDisposable
     /// <returns>The number of objects deleted.</returns>
     public async Task<int> RemoveNote(int id)
     {
-        await Init();
         return await _connection.DeleteAsync<Note>(id);
     }
 
@@ -104,7 +101,6 @@ public class Database : IDisposable
     /// <returns>Note with new data.</returns>
     public async Task<Note?> UpdateNote(Note updatedEntry)
     {
-        await Init();
         try
         {
             if (updatedEntry.Id == -1)
@@ -128,8 +124,6 @@ public class Database : IDisposable
     /// <returns>List of notes.</returns>
     public async Task<List<Note>> GetNotes(int vehicleId)
     {
-        await Init();
-
         return (await _connection.Table<Note>()
             .Where(note => note.VehicleId == vehicleId)
             .OrderByDescending(x => x.HasRemind)
@@ -153,8 +147,6 @@ public class Database : IDisposable
     /// <returns>List of notes.</returns>
     public async Task<List<Note>> GetNotes(int vehicleId, string? filter, int typeFilter)
     {
-        await Init();
-
         var notes = await GetNotes(vehicleId);
 
         if (!string.IsNullOrEmpty(filter))
@@ -183,8 +175,6 @@ public class Database : IDisposable
     /// <returns>The number of objects deleted.</returns>
     public async Task<int> RemoveOdometerState(int id)
     {
-        await Init();
-
         return await _connection.DeleteAsync<OdometerState>(id);
     }
 
@@ -195,8 +185,6 @@ public class Database : IDisposable
     /// <returns>State with new data.</returns>
     public async Task<OdometerState?> UpdateOdometerState(OdometerState state)
     {
-        await Init();
-
         try
         {
             if (state.Id == -1)
@@ -219,8 +207,6 @@ public class Database : IDisposable
     /// <returns>List of OdometerStates.</returns>
     public async Task<List<OdometerState>> GetOdometerStates(int vehicleId)
     {
-        await Init();
-
         var states = await _connection.Table<OdometerState>().ToListAsync();
 
         return states
@@ -231,20 +217,16 @@ public class Database : IDisposable
     
     private async Task<int> AddNewVehicle(Vehicle vehicle)
     {
-        await Init();
         return await _connection.InsertAsync(vehicle);
     }
     
     private async Task<int> AddNewNote(Note note)
     {
-        await Init();
         return await _connection.InsertAsync(note);
     }
     
     private async Task<int> AddOdometerState(OdometerState state)
     {
-        await Init();
-
         return await _connection.InsertAsync(state);
     }
 }
