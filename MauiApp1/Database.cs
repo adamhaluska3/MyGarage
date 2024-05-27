@@ -1,44 +1,29 @@
-﻿using MyGarage.Models;
+﻿#nullable enable
+using MyGarage.Models;
 using SQLite;
 
 namespace MyGarage;
 
 public class Database : IDisposable
 { 
-    private SQLiteAsyncConnection connection;
-
-    public Database()
-    {
-    }
+    private SQLiteAsyncConnection _connection;
 
     public void Dispose()
     {
-        connection.CloseAsync().Wait();
+        _connection.CloseAsync().Wait();
     }
 
     private async Task Init()
     {
-        if (connection != null)
+        if (_connection != null)
             return;
 
-        connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        await connection.CreateTableAsync<Vehicle>();
-        await connection.CreateTableAsync<Note>();
-        await connection.CreateTableAsync<OdometerState>();
+        _connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+        await _connection.CreateTableAsync<Vehicle>();
+        await _connection.CreateTableAsync<Note>();
+        await _connection.CreateTableAsync<OdometerState>();
     }
-
-
-    // Vehicle
-    /// <summary>
-    /// Adds given vehicle into database.
-    /// </summary>
-    /// <param name="vehicle">Vehicle to add</param>
-    /// <returns>The number of rows added to the table.</returns>
-    public async Task<int> AddNewVehicle(Vehicle vehicle)
-    {
-        await Init();
-        return await connection.InsertAsync(vehicle);
-    }
+    
 
     /// <summary>
     /// Removes given vehicle from the database.
@@ -48,9 +33,9 @@ public class Database : IDisposable
     public async Task<int> RemoveVehicle(int id)
     {
         await Init();
-        await connection.Table<Note>().DeleteAsync(note => note.VehicleId == id);
+        await _connection.Table<Note>().DeleteAsync(note => note.VehicleId == id);
 
-        return await connection.DeleteAsync<Vehicle>(id);
+        return await _connection.DeleteAsync<Vehicle>(id);
     }
 
     /// <summary>
@@ -67,14 +52,14 @@ public class Database : IDisposable
                 await AddNewVehicle(updatedEntry);
 
             else
-                await connection.UpdateAsync(updatedEntry);
+                await _connection.UpdateAsync(updatedEntry);
         }
         catch (Exception)
         {
             return null;
         }
 
-        return await connection.FindAsync<Vehicle>(updatedEntry.Id);
+        return await _connection.FindAsync<Vehicle>(updatedEntry.Id);
     }
 
     /// <summary>
@@ -84,7 +69,7 @@ public class Database : IDisposable
     public async Task<List<Vehicle>> GetAllVehicles()
     {
         await Init();
-        return (await connection.Table<Vehicle>()
+        return (await _connection.Table<Vehicle>()
             .OrderBy(x => x.Name)
             .ToListAsync());
     }
@@ -97,21 +82,9 @@ public class Database : IDisposable
     public async Task<Vehicle?> GetVehicle(int id)
     {
         await Init();
-        return await connection.FindAsync<Vehicle>(id);
+        return await _connection.FindAsync<Vehicle>(id);
     }
-
-
-    // Note
-    /// <summary>
-    /// Adds given note to the database.
-    /// </summary>
-    /// <param name="note">New note</param>
-    /// <returns>The number of rows added to the table.</returns>
-    public async Task<int> AddNewNote(Note note)
-    {
-        await Init();
-        return await connection.InsertAsync(note);
-    }
+    
 
     /// <summary>
     /// Removes the note with given ID from the database.
@@ -121,7 +94,7 @@ public class Database : IDisposable
     public async Task<int> RemoveNote(int id)
     {
         await Init();
-        return await connection.DeleteAsync<Note>(id);
+        return await _connection.DeleteAsync<Note>(id);
     }
 
     /// <summary>
@@ -138,14 +111,14 @@ public class Database : IDisposable
                 await AddNewNote(updatedEntry);
 
             else
-                await connection.UpdateAsync(updatedEntry);
+                await _connection.UpdateAsync(updatedEntry);
         }
         catch (Exception)
         {
             return null;
         }
 
-        return await connection.FindAsync<Note>(updatedEntry.Id);
+        return await _connection.FindAsync<Note>(updatedEntry.Id);
     }
 
     /// <summary>
@@ -157,7 +130,7 @@ public class Database : IDisposable
     {
         await Init();
 
-        return (await connection.Table<Note>()
+        return (await _connection.Table<Note>()
             .Where(note => note.VehicleId == vehicleId)
             .OrderByDescending(x => x.HasRemind)
             .ThenBy(x => x.OdoRemind)
@@ -184,7 +157,7 @@ public class Database : IDisposable
 
         var notes = await GetNotes(vehicleId);
 
-        if (filter != "" && filter != null)
+        if (!string.IsNullOrEmpty(filter))
         {
             notes = notes
                 .Where(note => (note.Description != null && note.Description.Contains(filter)) ||
@@ -202,20 +175,7 @@ public class Database : IDisposable
         return notes;
     }
 
-
-    // OdometerState
-    /// <summary>
-    /// Adds given Odometer state to the database.
-    /// </summary>
-    /// <param name="state">OdometerState to add</param>
-    /// <returns>The number of rows added to the table.</returns>
-    public async Task<int> AddOdometerState(OdometerState state)
-    {
-        await Init();
-
-        return await connection.InsertAsync(state);
-    }
-
+    
     /// <summary>
     /// Removes OdometerState with given ID from the database.
     /// </summary>
@@ -225,7 +185,7 @@ public class Database : IDisposable
     {
         await Init();
 
-        return await connection.DeleteAsync<OdometerState>(id);
+        return await _connection.DeleteAsync<OdometerState>(id);
     }
 
     /// <summary>
@@ -233,7 +193,7 @@ public class Database : IDisposable
     /// </summary>
     /// <param name="state">State to update (loaded with new data)</param>
     /// <returns>State with new data.</returns>
-    public async Task<OdometerState> UpdateOdometerState(OdometerState state)
+    public async Task<OdometerState?> UpdateOdometerState(OdometerState state)
     {
         await Init();
 
@@ -242,14 +202,14 @@ public class Database : IDisposable
             if (state.Id == -1)
                 await AddOdometerState(state);
             else
-                await connection.UpdateAsync(state);
+                await _connection.UpdateAsync(state);
         }
         catch (Exception)
         {
             return null;
         }
 
-        return await connection.FindAsync<OdometerState>(state.Id);
+        return await _connection.FindAsync<OdometerState>(state.Id);
     }
 
     /// <summary>
@@ -261,10 +221,30 @@ public class Database : IDisposable
     {
         await Init();
 
-        var states = await connection.Table<OdometerState>().ToListAsync();
+        var states = await _connection.Table<OdometerState>().ToListAsync();
 
         return states
             .Where(e => e.VehicleId == vehicleId)
             .ToList();
+    }
+    
+    
+    private async Task<int> AddNewVehicle(Vehicle vehicle)
+    {
+        await Init();
+        return await _connection.InsertAsync(vehicle);
+    }
+    
+    private async Task<int> AddNewNote(Note note)
+    {
+        await Init();
+        return await _connection.InsertAsync(note);
+    }
+    
+    private async Task<int> AddOdometerState(OdometerState state)
+    {
+        await Init();
+
+        return await _connection.InsertAsync(state);
     }
 }

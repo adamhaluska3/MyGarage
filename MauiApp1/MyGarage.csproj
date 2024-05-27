@@ -68,6 +68,54 @@
 	  <MauiCss Remove="Views\NewFolder\**" />
 	  <MauiXaml Remove="Views\NewFolder\**" />
 	  <None Remove="Views\NewFolder\**" />
+	  <MauiXaml Update="Views\NoteViews\NoteDetail.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="Views\NoteViews\NoteDetail.xaml.cs">
+	    <DependentUpon>NoteDetail.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <MauiXaml Update="Views\OdoStateViews\OdometerData.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="Views\OdoStateViews\OdometerData.xaml.cs">
+	    <DependentUpon>OdometerData.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <MauiXaml Update="Views\OdoStateViews\OdoStateDetail.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="Views\OdoStateViews\OdoStateDetail.xaml.cs">
+	    <DependentUpon>OdoStateDetail.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <MauiXaml Update="Views\NoteViews\NoteList.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="Views\NoteViews\NoteList.xaml.cs">
+	    <DependentUpon>NoteList.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <MauiXaml Update="Views\VehicleViews\VehicleData.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="Views\VehicleViews\VehicleData.xaml.cs">
+	    <DependentUpon>VehicleData.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	  <MauiXaml Update="Views\VehicleViews\VehicleDetail.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <Compile Update="Views\VehicleViews\VehicleDetail.xaml.cs">
+	    <DependentUpon>VehicleDetail.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,33 +135,6 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>LangRes.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\NoteList.xaml.cs">
-	    <DependentUpon>NoteList.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\VehicleDetail.xaml.cs">
-	    <DependentUpon>VehicleDetail.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Views\NoteDetail.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\NoteList.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\OdometerData.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\OdoStateDetail.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\VehicleData.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\VehicleDetail.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

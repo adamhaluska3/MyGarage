@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyGarage.Models;
 
-
 public class Note : ObservableObject
 {
     [PrimaryKey, AutoIncrement]

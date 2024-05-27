@@ -1,5 +1,5 @@
 ﻿using MyGarage.Models;
-using MyGarage.Models.VisualModels;
+using MyGarage.Models.ViewModels;
 using MyGarage.Views;
 
 namespace MyGarage
@@ -22,11 +22,8 @@ namespace MyGarage
         {
             var vehicles = (await App.Database.GetAllVehicles());
 
-            List<VehicleItem> items = new List<VehicleItem>();
-            foreach (var vehicle in vehicles)
-            {
-                items.Add(new VehicleItem(vehicle.Name, $"{vehicle.Make} {vehicle.Model}", vehicle));
-            }
+            List<VehicleItem> items = [];
+            items.AddRange(vehicles.Select(vehicle => new VehicleItem(vehicle.Name, $"{vehicle.Make} {vehicle.Model}", vehicle)));
 
             VehiclesCollectionView.ItemsSource = items;
         }
@@ -37,8 +34,10 @@ namespace MyGarage
         {
             var vehicle = new Vehicle();
 
-            var vehicleDetailPage = new VehicleDetail(vehicle);
-            vehicleDetailPage.BindingContext = vehicle;
+            var vehicleDetailPage = new VehicleDetail(vehicle)
+            {
+                BindingContext = vehicle
+            };
 
             await Navigation.PushAsync(vehicleDetailPage, true);
         }

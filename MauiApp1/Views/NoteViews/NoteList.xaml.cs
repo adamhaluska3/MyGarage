@@ -1,7 +1,7 @@
 using MyGarage.Models;
-using MyGarage.Models.VisualModels;
 using MyGarage.Resources.Languages;
 using System.Globalization;
+using MyGarage.Models.ViewModels;
 
 namespace MyGarage.Views;
 
@@ -42,7 +42,7 @@ public partial class NoteList : ContentPage
             LangRes.Any,
         };
 
-        noteTypeFilter.ItemsSource = options;
+        NoteTypeFilter.ItemsSource = options;
     }
 
     private void SetTitle()
@@ -51,7 +51,7 @@ public partial class NoteList : ContentPage
 
         // TODO better?
         if (currentLanguage == "sk")
-            Title = $"Pozn·mky vozidla {currentVehicle.Name}";
+            Title = $"Pozn√°mky vozidla {currentVehicle.Name}";
 
         else
             Title = $"{currentVehicle.Name}'s notes";
@@ -77,7 +77,7 @@ public partial class NoteList : ContentPage
 
     private async void FilterNotes(object sender, EventArgs e)
     {
-        var notes = await App.Database.GetNotes(vehicleId, stringFilter.Text, noteTypeFilter.SelectedIndex);
+        var notes = await App.Database.GetNotes(vehicleId, StringFilter.Text, NoteTypeFilter.SelectedIndex);
         SetNotesSource(notes);
     }
 
@@ -114,6 +114,6 @@ public partial class NoteList : ContentPage
 
             items.Add(new NoteItem(note, remainingOdo));
         }
-        notesCollection.ItemsSource = items;
+        NotesCollection.ItemsSource = items;
     }
 }

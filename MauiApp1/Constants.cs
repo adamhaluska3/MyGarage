@@ -4,7 +4,7 @@ namespace MyGarage;
 
 public static class Constants
 {
-    public const string DatabaseFilename = "MyGarageDatabase.db3";
+    private const string DatabaseFilename = "MyGarageDatabase.db3";
     public const SQLiteOpenFlags Flags =
         // open the database in read/write mode
         SQLiteOpenFlags.ReadWrite |

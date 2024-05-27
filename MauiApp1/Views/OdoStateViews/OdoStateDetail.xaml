@@ -9,7 +9,7 @@
     Title="Odometer State">
 
     <ContentPage.Resources>
-        <converters:StringToIntConverter x:Key="stringToInt" />
+        <converters:StringToIntConverter x:Key="StringToInt" />
     </ContentPage.Resources>
 
     <ScrollView>
@@ -49,7 +49,7 @@
                     HorizontalOptions="FillAndExpand"
                     Keyboard="Numeric"
                     Placeholder="Odometer state"
-                    Text="{Binding State, Mode=TwoWay, TargetNullValue='0', FallbackValue='0', Converter={StaticResource stringToInt}}" />
+                    Text="{Binding State, Mode=TwoWay, TargetNullValue='0', FallbackValue='0', Converter={StaticResource StringToInt}}" />
 
                 <Button
                     x:Name="SaveChanges"

@@ -1,3 +1,3 @@
-﻿namespace MyGarage.Models.VisualModels;
+﻿namespace MyGarage.Models.ViewModels;
 
-public record NoteItem(Note Note, string remainingOdo = "");
+public record NoteItem(Note Note, string RemainingOdo = "");

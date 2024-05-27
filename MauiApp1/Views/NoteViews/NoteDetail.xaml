@@ -9,12 +9,12 @@
     Title="{Binding Name}">
 
     <ContentPage.Resources>
-        <converters:StringToIntConverter x:Key="stringToInt" />
-        <converters:IntToNoteType x:Key="intToNoteType" />
+        <converters:StringToIntConverter x:Key="StringToInt" />
+        <converters:IntToNoteType x:Key="IntToNoteType" />
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout x:Name="_verticalStack">
+        <VerticalStackLayout x:Name="VerticalStack">
             <Grid Padding="30">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -72,7 +72,7 @@
                     x:Name="NoteType"
                     Grid.Row="2"
                     Grid.Column="1"
-                    SelectedIndex="{Binding Type, Mode=TwoWay, Converter={StaticResource intToNoteType}}" />
+                    SelectedIndex="{Binding Type, Mode=TwoWay, Converter={StaticResource IntToNoteType}}" />
 
                 <Label
                     Grid.Row="4"
@@ -121,18 +121,19 @@
                     IsEnabled="{Binding HasRemind}"
                     Keyboard="Numeric"
                     Placeholder="Odometer state"
-                    Text="{Binding OdoRemind, Mode=TwoWay, TargetNullValue='0', FallbackValue='0', Converter={StaticResource stringToInt}}" />
+                    Text="{Binding OdoRemind, Mode=TwoWay, TargetNullValue='0', FallbackValue='0', Converter={StaticResource StringToInt}}" />
 
                 <Button
-                    x:Name="saveChanges"
+                    x:Name="SaveChanges"
                     Grid.Row="11"
+                    Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Pressed="UpdateEntry"
                     Text="{x:Static strings:LangRes.Save}" />
                 <Button
-                    x:Name="deleteEntry"
+                    x:Name="DeleteEntry"
                     Grid.Row="12"
-                    Grid.Column="2"
+                    Grid.Column="1"
                     Margin="00,10,0,0"
                     BackgroundColor="Red"
                     Pressed="RemoveEntry"

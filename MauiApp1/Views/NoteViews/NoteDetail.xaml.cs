@@ -22,7 +22,7 @@ public partial class NoteDetail
         else
 
         if (note.Id == -1)
-            deleteEntry.IsEnabled = false;
+            DeleteEntry.IsEnabled = false;
 
         LoadPicker();
     }
@@ -83,7 +83,7 @@ public partial class NoteDetail
         _note = newNote;
         Title = newNote.Name;
 
-        deleteEntry.IsEnabled = true;
+        DeleteEntry.IsEnabled = true;
     }
 
     private async void RemoveEntry(object sender, EventArgs e)

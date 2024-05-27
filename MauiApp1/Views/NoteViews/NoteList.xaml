@@ -6,21 +6,21 @@
     xmlns:strings="clr-namespace:MyGarage.Resources.Languages"
     Title="Loading...">
     <ScrollView>
-        <VerticalStackLayout x:Name="_verticalStack" Padding="30">
+        <VerticalStackLayout x:Name="VerticalStack" Padding="30">
             <Entry
-                x:Name="stringFilter"
+                x:Name="StringFilter"
                 Margin="30,30,30,0"
                 Placeholder="{x:Static strings:LangRes.Search}"
                 TextChanged="FilterNotes" />
             <Picker
-                x:Name="noteTypeFilter"
+                x:Name="NoteTypeFilter"
                 Title="{x:Static strings:LangRes.FilterByType}"
                 Margin="30,10,30,30"
                 SelectedIndexChanged="FilterNotes" />
 
             <BoxView HeightRequest="2" />
 
-            <CollectionView x:Name="notesCollection" EmptyView="No Notes">
+            <CollectionView x:Name="NotesCollection" EmptyView="No Notes">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Border>
@@ -58,7 +58,7 @@
                                         VerticalTextAlignment="End" />
                                     <Label
                                         Grid.Row="2"
-                                        Grid.Column="2"
+                                        Grid.Column="1"
                                         HorizontalTextAlignment="Center">
                                         <Label.Triggers>
                                             <DataTrigger
@@ -81,10 +81,10 @@
                                         Grid.Column="1"
                                         FontAttributes="Italic"
                                         HorizontalTextAlignment="Center"
-                                        Text="{Binding remainingOdo, StringFormat='{}{0:#,##,#}'}">
+                                        Text="{Binding RemainingOdo, StringFormat='{}{0:#,##,#}'}">
                                         <Label.Triggers>
                                             <DataTrigger
-                                                Binding="{Binding remainingOdo}"
+                                                Binding="{Binding RemainingOdo}"
                                                 TargetType="Label"
                                                 Value="Now">
                                                 <Setter Property="TextColor" Value="Red" />
@@ -109,7 +109,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="1"
                     Clicked="AddNote"
                     Text="{x:Static strings:LangRes.AddNew}"

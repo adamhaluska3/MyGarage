@@ -73,6 +73,6 @@ public partial class OdometerData : ContentPage
             items.Add(new OdometerStateItem(entry));
         }
 
-        statesCollection.ItemsSource = items;
+        StatesCollection.ItemsSource = items;
     }
 }

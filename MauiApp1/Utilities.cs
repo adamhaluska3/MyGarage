@@ -20,12 +20,12 @@ public static class Utilities
             ActionButtonFont = Microsoft.Maui.Font.SystemFontOfSize(14),
         };
 
-        string text = message;
-        string actionButtonText = "OK";
-        Action action = async () => await navigation.PopAsync();
-        TimeSpan duration = TimeSpan.FromSeconds(3);
+        var text = message;
+        const string actionButtonText = "OK";
+        async void Action() => await navigation.PopAsync();
+        var duration = TimeSpan.FromSeconds(3);
 
-        var snackbar = Snackbar.Make(text, action, actionButtonText, duration, snackbarOptions);
+        var snackbar = Snackbar.Make(text, Action, actionButtonText, duration, snackbarOptions);
 
         return snackbar;
     }

@@ -4,7 +4,7 @@ public enum VehicleType
 {
     Hatchback,
     Sedan,
-    SUV,
+    Suv,
     Crossover,
     Coupe,
     Convertible,
