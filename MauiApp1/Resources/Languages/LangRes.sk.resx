@@ -291,4 +291,43 @@
   <data name="YearLabel" xml:space="preserve">
     <value>Rok výroby:</value>
   </data>
+  <data name="AverageOdoLabel" xml:space="preserve">
+    <value>Priemerný nájazd za týždeň:</value>
+  </data>
+  <data name="CheckIn" xml:space="preserve">
+    <value>O</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Dátum:</value>
+  </data>
+  <data name="InvalidOdoState" xml:space="preserve">
+    <value>Nesprávny údaj.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nie</value>
+  </data>
+  <data name="OdometerTitle" xml:space="preserve">
+    <value>Nájazd km</value>
+  </data>
+  <data name="OdoStateLabel" xml:space="preserve">
+    <value>Najazdené kilometre:</value>
+  </data>
+  <data name="ReallyRemove" xml:space="preserve">
+    <value>Naozaj chcete odstrániť túto poznámku?</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Odstrániť</value>
+  </data>
+  <data name="TotalOdoLabel" xml:space="preserve">
+    <value>Celkovo najazdené kilometre</value>
+  </data>
+  <data name="UntilCheck" xml:space="preserve">
+    <value>do kontroly</value>
+  </data>
+  <data name="VINLabel" xml:space="preserve">
+    <value>VIN:</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Áno</value>
+  </data>
 </root>

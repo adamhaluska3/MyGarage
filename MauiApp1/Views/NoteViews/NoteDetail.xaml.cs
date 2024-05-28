@@ -19,7 +19,6 @@ public partial class NoteDetail
 
         if (note.Name == null)
             Title = LangRes.NewNote;
-        else
 
         if (note.Id == -1)
             DeleteEntry.IsEnabled = false;
