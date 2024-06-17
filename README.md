@@ -17,6 +17,11 @@ Download Android and Windows packages from [Releases](https://github.com/adamhal
 1. Download '.zip' from [Releases](https://github.com/adamhaluska3/MyGarage/releases) and extract it
 2. Run '.msix' file and follow the installation guide.
 
+## Screenshots
+![Main Page](https://github.com/adamhaluska3/MyGarage/assets/138519613/85ae7049-adc1-4a00-87cd-d7ddf762ed59)
+![2024-06-17 12_41_00-Android Emulator - Pixel_5_API_33_5554](https://github.com/adamhaluska3/MyGarage/assets/138519613/b4b0b4d6-fe7d-4c17-8f20-7a64979ea108)
+![2024-06-17 12_40_30-Android Emulator - Pixel_5_API_33_5554](https://github.com/adamhaluska3/MyGarage/assets/138519613/1c2fded8-41a4-4a84-a470-03003bab17c2)
+
 ## Roadmap
 - [x] Add Notes
 - [x] Add Odometer stats with Note reminders
@@ -24,11 +29,6 @@ Download Android and Windows packages from [Releases](https://github.com/adamhal
 - [ ] Add Custom photos for vehicles
 - [ ] Add data Import/Export
 - [ ] Add more localizations
-
-## Screenshots
-![Main Page](https://github.com/adamhaluska3/MyGarage/assets/138519613/85ae7049-adc1-4a00-87cd-d7ddf762ed59)
-![2024-06-17 12_41_00-Android Emulator - Pixel_5_API_33_5554](https://github.com/adamhaluska3/MyGarage/assets/138519613/b4b0b4d6-fe7d-4c17-8f20-7a64979ea108)
-![2024-06-17 12_40_30-Android Emulator - Pixel_5_API_33_5554](https://github.com/adamhaluska3/MyGarage/assets/138519613/1c2fded8-41a4-4a84-a470-03003bab17c2)
 
 
 ## Contact
