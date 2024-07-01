@@ -10,6 +10,7 @@ public partial class App : Application
         InitializeComponent();
         Database = new Database();
 
-        MainPage = new NavigationPage(new MainPage());
+        //MainPage = new NavigationPage(new MainPage());
+        MainPage = new AppShell();
     }
 }

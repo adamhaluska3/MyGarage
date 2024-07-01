@@ -68,6 +68,12 @@
 	  <MauiCss Remove="Views\NewFolder\**" />
 	  <MauiXaml Remove="Views\NewFolder\**" />
 	  <None Remove="Views\NewFolder\**" />
+	  <MauiXaml Update="AppShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\NoteViews\NoteDetail.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
@@ -100,6 +106,9 @@
 	    <DependentUpon>NoteList.xaml</DependentUpon>
 	    <SubType>Code</SubType>
 	  </Compile>
+	  <MauiXaml Update="Views\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\VehicleViews\VehicleData.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
