@@ -8,7 +8,7 @@ public partial class SettingsPage : ContentPage
 	{
 		InitializeComponent();
 
-        ThemeSwitch.IsToggled = BoolAppTheme.AppThemeToBool(Preferences.Default.Get("AppTheme", AppTheme.Light));
+        ThemeSwitch.IsToggled = BoolAppTheme.AppThemeToBool((AppTheme) Preferences.Get("AppTheme", (int) AppTheme.Light));
 	}
 
     private void Button_Clicked(object sender, EventArgs e)

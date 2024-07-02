@@ -31,8 +31,8 @@ public static class Utilities
 
     public static void SetAppTheme(AppTheme appTheme)
     {
-        Preferences.Default.Set("AppTheme", (int) appTheme);
+        Preferences.Set("AppTheme", (int) appTheme);
 
-        Application.Current.UserAppTheme = Preferences.Default.Get("AppTheme", AppTheme.Light);
+        Application.Current.UserAppTheme = (AppTheme) Preferences.Get("AppTheme", (int) AppTheme.Light);
     }
 }
