@@ -10,6 +10,9 @@ public partial class App : Application
         InitializeComponent();
         Database = new Database();
 
+        if (UserAppTheme == AppTheme.Unspecified)
+            Utilities.SetAppTheme(AppTheme.Light);
+
         //MainPage = new NavigationPage(new MainPage());
         MainPage = new AppShell();
     }

@@ -5,9 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Settings">
     <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="This page will be a settings page"
-            VerticalOptions="Center" />
+        <Switch x:Name="ThemeSwitch" />
+
+        <Button
+            x:Name="butt"
+            Clicked="Button_Clicked"
+            Text="Save" />
     </VerticalStackLayout>
 </ContentPage>

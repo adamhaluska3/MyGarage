@@ -20,13 +20,19 @@ public static class Utilities
             ActionButtonFont = Microsoft.Maui.Font.SystemFontOfSize(14),
         };
 
-        var text = message;
         const string actionButtonText = "OK";
         async void Action() => await navigation.PopAsync();
         var duration = TimeSpan.FromSeconds(3);
 
-        var snackbar = Snackbar.Make(text, Action, actionButtonText, duration, snackbarOptions);
+        var snackbar = Snackbar.Make(message, Action, actionButtonText, duration, snackbarOptions);
 
         return snackbar;
+    }
+
+    public static void SetAppTheme(AppTheme appTheme)
+    {
+        Preferences.Default.Set("AppTheme", (int) appTheme);
+
+        Application.Current.UserAppTheme = Preferences.Default.Get("AppTheme", AppTheme.Light);
     }
 }
